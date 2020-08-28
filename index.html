@@ -28,15 +28,44 @@
             </div>
         </nav>
         <div class="container-fluid" id="home" style="display: block;">
-           <h1>Home</h1> 
+
+
+            <div class="container add-product row rounded z-depth-5 ">
+                <div class="heading">
+                    Add product
+                </div>
+                <div class="row product">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix"> shopping_cart</i>
+                        <input type="text" id="autocomplete-input" class="autocomplete">
+                        <label for="autocomplete-input">Product Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix"> monetization_on</i>
+                        <input type="number" id="amount" >
+                        <label for="amount">Amount</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                </div>
+                
+
+            </div>
+
+
+
+
+
+            <div class="container-fluid" id="dashBoard" style="display: none;">
+                <h1>Dash Board</h1>
+            </div>
+            <div class="container-fluid" id="settings" style="display: none;">
+                <h1>Settings</h1>
+            </div>
         </div>
-        <div class="container-fluid" id="dashBoard" style="display: none;">
-           <h1>Dash Board</h1> 
-        </div>
-        <div class="container-fluid" id="settings" style="display: none;">
-           <h1>Settings</h1> 
-        </div>
-    </div>
 
 
 
@@ -46,12 +75,12 @@
 
 
 
-    <!-- offline -->
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-    <!-- online -->
-    <!-- Compiled and minified JavaScript -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <script src="app.js"></script>
+        <!-- offline -->
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        <!-- online -->
+        <!-- Compiled and minified JavaScript -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+        <script src="app.js"></script>
 </body>
 
 </html>

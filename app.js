@@ -1,3 +1,4 @@
+// nav bar change 
 const navBar = document.querySelectorAll('#navBar li a');
 navBar.forEach((element) =>
   element.addEventListener('click', (e) => changeTab(e))
