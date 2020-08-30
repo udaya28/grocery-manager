@@ -105,12 +105,24 @@ function getUserData() {
   document.getElementById('amount').value = '';
   document.getElementById('count').value = '';
 
-  document.getElementById('product-name').previousElementSibling.classList.remove('active');
-  document.getElementById('product-name').nextElementSibling.classList.remove('active');
-  document.getElementById('amount').previousElementSibling.classList.remove('active');
-  document.getElementById('amount').nextElementSibling.classList.remove('active');
-  document.getElementById('count').previousElementSibling.classList.remove('active');
-  document.getElementById('count').nextElementSibling.classList.remove('active');
+  document
+    .getElementById('product-name')
+    .previousElementSibling.classList.remove('active');
+  document
+    .getElementById('product-name')
+    .nextElementSibling.classList.remove('active');
+  document
+    .getElementById('amount')
+    .previousElementSibling.classList.remove('active');
+  document
+    .getElementById('amount')
+    .nextElementSibling.classList.remove('active');
+  document
+    .getElementById('count')
+    .previousElementSibling.classList.remove('active');
+  document
+    .getElementById('count')
+    .nextElementSibling.classList.remove('active');
 
   return [true, productName, amount, count];
 }
@@ -149,7 +161,11 @@ function addProduct() {
 // console.log(keys[0]);
 // clearAllData();
 
+document.getElementById('delete-data').addEventListener('click', clearAllData);
+
 function clearAllData() {
   localStorage.clear();
   localSetup();
+  console.log('Cleared local storage');
+  
 }
