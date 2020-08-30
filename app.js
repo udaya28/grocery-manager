@@ -64,13 +64,6 @@ function getKey() {
   } else if (milliSecond.length == 2) {
     milliSecond = '0' + milliSecond;
   }
-  // console.log(year);
-  // console.log(month);
-  // console.log(date);
-  // console.log(hours);
-  // console.log(minutes);
-  // console.log(seconds);
-  // console.log(milliSecond);
   let key = parseInt(
     year + month + date + hours + minutes + seconds + milliSecond
   );
@@ -80,6 +73,10 @@ function getKey() {
   return [key, now];
 }
 
+//add event listener for add product
+const addProductButton = document
+  .getElementById('addProduct')
+  .addEventListener('click', addProduct);
 //data declaration
 var keys = {};
 var data = {};
@@ -100,21 +97,50 @@ function localSetup() {
   return true;
 }
 
-function addProduct() {
-  localSetup();
-  let [key, time] = getKey();
-  keys[0].unshift(key);
-  let x = {};
-  x[key] = time;
-  Object.assign(data, x);
-  localStorage.setItem('data', JSON.stringify(data));
-  localStorage.setItem('keys', JSON.stringify(keys));
+function getUserData() {
+  let productName = document.getElementById('product-name').value;
+  let amount = document.getElementById('amount').value;
+  let count = document.getElementById('count').value;
+  document.getElementById('product-name').value = '';
+  document.getElementById('amount').value = '';
+  document.getElementById('count').value = '';
+
+  return [true, productName, amount, count];
 }
 
-addProduct();
-console.log(data);
-console.log(keys[0]);
-// clearAllData();FFF
+function addProduct() {
+  localSetup();
+  let flag, productName, amount, count;
+  const arr = getUserData();
+  flag = arr[0];
+  if (flag) {
+    productName = arr[1];
+    amount = arr[2];
+    count = arr[3];
+    let [key, time] = getKey();
+    keys[0].unshift(key);
+    let x = {};
+    x[key] = {
+      name: productName,
+      amount: +amount,
+      count: +count,
+      total: amount * amount,
+      time: time,
+    };
+    Object.assign(data, x);
+    localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem('keys', JSON.stringify(keys));
+  }
+  
+  console.log(data);
+  console.log(keys[0]);
+}
+
+// addProduct();
+// localSetup();
+// console.log(data);
+// console.log(keys[0]);
+// clearAllData();
 
 function clearAllData() {
   localStorage.clear();
