@@ -34,6 +34,11 @@ function changeTab(e) {
   }
 }
 
+function alertError(errorString) {
+  console.log(errorString)
+  M.toast({html: errorString})
+}
+
 //get key
 function getKey() {
   let now = new Date();
@@ -101,6 +106,8 @@ function getUserData() {
   let productName = document.getElementById('product-name').value;
   let amount = document.getElementById('amount').value;
   let count = document.getElementById('count').value;
+  let flag;
+
   document.getElementById('product-name').value = '';
   document.getElementById('amount').value = '';
   document.getElementById('count').value = '';
@@ -123,8 +130,31 @@ function getUserData() {
   document
     .getElementById('count')
     .nextElementSibling.classList.remove('active');
+  console.log(productName, amount, count);
+  if (
+    productName === '' ||
+    amount === '' ||
+    count === '' ||
+    amount <= 0 ||
+    count <= 0
+  ) {
+    flag = false;
+  } else {
+    flag = true;
+  }
 
-  return [true, productName, amount, count];
+  if (productName === '') {
+    alertError("Product Name can not be Empty");
+  }else if(amount === ''){
+    alertError("Amount can not be Empty");
+  }else if(count === ''){
+    alertError("Count can not be Empty");
+  }else if(amount <0){
+    alertError("Amount can not be Negative");
+  }else if(count < 0){
+    alertError("Count can not be Negative");
+  }
+  return [flag, productName, amount, count];
 }
 
 function addProduct() {
@@ -149,6 +179,8 @@ function addProduct() {
     Object.assign(data, x);
     localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('keys', JSON.stringify(keys));
+  } else {
+    console.log('invalid input');
   }
 
   console.log(data);
@@ -167,5 +199,4 @@ function clearAllData() {
   localStorage.clear();
   localSetup();
   console.log('Cleared local storage');
-  
 }
