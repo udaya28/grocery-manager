@@ -98,7 +98,8 @@ function localSetup() {
   } else {
     keys = JSON.parse(localStorage.getItem('keys'));
   }
-  if (keys[0].length == 0) {
+  
+  if (keys[0] == undefined || keys[0].length == 0 ) {
     document
       .getElementsByClassName('time-line')[0]
       .setAttribute('style', 'display : none;');
