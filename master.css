@@ -47,6 +47,9 @@ input:not([type]):focus:not([readonly]) + label, input[type="text"]:not(.browser
     width: 95%;
     /* margin:0px 5px; */
   }
+  .time-line{
+    width: 95%;
+  }
   .input-field{
     margin-top: 8px;
     margin-bottom: 8px;
