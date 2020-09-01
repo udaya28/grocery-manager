@@ -98,7 +98,17 @@ function localSetup() {
   } else {
     keys = JSON.parse(localStorage.getItem('keys'));
   }
-  return [data, keys[0]];
+  if (keys[0].length == 0) {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : none;');
+    // console.log(document.getElementsByClassName('time-line'));
+  } else {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : block;');
+  }
+  return [data, keys];
 }
 
 function getUserData() {
@@ -179,12 +189,9 @@ function addProduct() {
     Object.assign(data, x);
     localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('keys', JSON.stringify(keys));
-    displayTimeLine(data, keys[0]);
     alertError('Item added successfully');
     displayTimeLine();
   }
-  console.log(data);
-  console.log(keys[0]);
 }
 
 document.getElementById('delete-data').addEventListener('click', clearAllData);
@@ -201,25 +208,24 @@ function changeCollapsible(e) {
   // console.log(e.target.parentElement.children[1].style.display)
   try {
     if (e.target.parentElement.children[1].nodeName == 'DIV') {
-    if (
-      e.target.parentElement.children[1].style.display == '' ||
-      e.target.parentElement.children[1].style.display == 'block'
-    ) {
-      e.target.parentElement.children[1].setAttribute(
-        'style',
-        'display : none;'
-      );
-    } else {
-      e.target.parentElement.children[1].setAttribute(
-        'style',
-        'display : block;'
-      );
+      if (
+        e.target.parentElement.children[1].style.display == '' ||
+        e.target.parentElement.children[1].style.display == 'block'
+      ) {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : none;'
+        );
+      } else {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : block;'
+        );
+      }
     }
-  }
   } catch (error) {
     // console.log(error)
   }
-  
 }
 
 function displayTimeLine() {
@@ -229,7 +235,7 @@ function displayTimeLine() {
 
   let collapsible = document.getElementsByClassName('collapsible')[0];
   let html = '';
-  keys.forEach((key) => {
+  keys[0].forEach((key) => {
     // console.log(data[key]);
     let product = data[key];
     let name = product.name;
@@ -269,7 +275,26 @@ function displayTimeLine() {
   );
   let deleteIcon = document.querySelectorAll('.delete-icon');
   deleteIcon.forEach((ele) =>
-    ele.addEventListener('click', (e) => console.log(e))
+    ele.addEventListener('click', (e) => {
+      console.log(
+        e.originalTarget.parentElement.parentElement.attributes[0].value
+      );
+      let ID = e.originalTarget.parentElement.parentElement.attributes[0].value;
+      // console.log(data, keys);
+      delete data[ID];
+      const index = keys[0].indexOf(+ID);
+      if (index > -1) {
+        keys[0].splice(index, 1);
+      }
+      // console.log(data);
+      // console.log(keys);
+      
+
+      localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem('keys', JSON.stringify(keys));
+      displayTimeLine();
+    })
   );
 }
+
 displayTimeLine();
