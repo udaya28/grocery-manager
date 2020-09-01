@@ -18,7 +18,7 @@
 
 <body>
     <div class="container-fluid" id="main">
-        <nav class="nav-extended  light-blue darken-3">
+        <nav class="nav-extended  light-blue darken-3 ">
             <div class="nav-wrapper">
                 <ul class="right" id="navBar">
                     <li class="active"><a id="homeButton">Home</a></li>
@@ -27,6 +27,9 @@
                 </ul>
             </div>
         </nav>
+
+
+
         <div class="container-fluid" id="home" style="display: block;">
 
 
@@ -34,41 +37,55 @@
                 <div class="heading">
                     Add product
                 </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix "> shopping_cart</i>
-                        <input type="text" id="autocomplete-input" class="autocomplete">
-                        <label for="autocomplete-input">Product Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix"> monetization_on</i>
-                        <input type="number" id="amount">
-                        <label for="amount">Amount per unit</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix">  loupe</i>
-                        <input type="number" id="count">
-                        <label for="count">Count per unit</label>
-                    </div>
-                    <button class="btn waves-effect waves-light right light-blue darken-3" type="submit" name="action">Add
-                        <i class="material-icons right">send</i>
-                    </button>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix "> shopping_cart</i>
+                    <input type="text" id="product-name" class="autocomplete">
+                    <label for="product-name" class="">Product Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix"> monetization_on</i>
+                    <input type="number" id="amount">
+                    <label for="amount">Amount per unit</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix"> loupe</i>
+                    <input type="number" id="count">
+                    <label for="count">Count per unit</label>
+                </div>
+                <!-- <div class="alert-invalid"></div> -->
+                <button class="btn waves-effect waves-light right light-blue darken-3" type="submit" name="action"
+                    id="addProduct">Add
+                    <i class="material-icons right">send</i>
+                </button>
             </div>
-            
 
-
-
-            
         </div>
-
-
-
-
 
         <div class="container-fluid" id="dashBoard" style="display: none;">
             <h1>Dash Board</h1>
         </div>
+
+
         <div class="container-fluid" id="settings" style="display: none;">
-            <h1>Settings</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card light-blue darken-3">
+                            <div class="card-content white-text">
+                                <span class="card-title center-align">Delete All Data</span>
+                                <p>On deleting all of your data on products will be deleted permanently and can't be retrieved</p>
+                            </div>
+
+                        </div>
+                        <button class="btn waves-effect waves-light right red darken-3" type="submit"
+                            name="action" id="delete-data">Delete
+                            <i class="material-icons right">delete_forever</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
