@@ -276,9 +276,9 @@ function displayTimeLine() {
   let deleteIcon = document.querySelectorAll('.delete-icon');
   deleteIcon.forEach((ele) =>
     ele.addEventListener('click', (e) => {
-      console.log(
-        e.originalTarget.parentElement.parentElement.attributes[0].value
-      );
+      // console.log(
+      //   e.originalTarget.parentElement.parentElement.attributes[0].value
+      // );
       let ID = e.originalTarget.parentElement.parentElement.attributes[0].value;
       // console.log(data, keys);
       delete data[ID];
