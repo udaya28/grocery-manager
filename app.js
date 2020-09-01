@@ -255,7 +255,7 @@ function displayTimeLine() {
          <div class="collapsible-header">
              ${name}
              <span class="badge"> <b> ₹ ${total}</b></span>
-             <p class="material-icons delete-icon">cancel</p>
+             <i class="material-icons delete-icon">cancel</i>
          </div>
          <div class="collapsible-body">
              <p>Price per item :<b> ₹${amount}</b></p>
