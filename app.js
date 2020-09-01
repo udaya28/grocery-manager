@@ -98,8 +98,8 @@ function localSetup() {
   } else {
     keys = JSON.parse(localStorage.getItem('keys'));
   }
-  
-  if (keys[0] == undefined || keys[0].length == 0 ) {
+
+  if (keys[0] == undefined || keys[0].length == 0) {
     document
       .getElementsByClassName('time-line')[0]
       .setAttribute('style', 'display : none;');
@@ -251,7 +251,7 @@ function displayTimeLine() {
     let day = time.toString().split(' ')[0];
 
     html += `
-    <li id='${key}'>
+    <li class='${key}'>
          <div class="collapsible-header">
              ${name}
              <span class="badge"> <b> ₹ ${total}</b></span>
@@ -277,10 +277,8 @@ function displayTimeLine() {
   let deleteIcon = document.querySelectorAll('.delete-icon');
   deleteIcon.forEach((ele) =>
     ele.addEventListener('click', (e) => {
-      // console.log(
-      //   e.originalTarget.parentElement.parentElement.attributes[0].value
-      // );
-      let ID = e.originalTarget.parentElement.parentElement.attributes[0].value;
+      console.log(e.originalTarget.parentElement.parentNode.className);
+      let ID = e.originalTarget.parentElement.parentNode.className;
       // console.log(data, keys);
       delete data[ID];
       const index = keys[0].indexOf(+ID);
@@ -289,7 +287,6 @@ function displayTimeLine() {
       }
       // console.log(data);
       // console.log(keys);
-      
 
       localStorage.setItem('data', JSON.stringify(data));
       localStorage.setItem('keys', JSON.stringify(keys));
@@ -298,5 +295,5 @@ function displayTimeLine() {
     })
   );
 }
- 
+
 displayTimeLine();
