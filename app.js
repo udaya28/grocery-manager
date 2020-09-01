@@ -35,8 +35,8 @@ function changeTab(e) {
 }
 
 function alertError(errorString) {
-  console.log(errorString)
-  M.toast({html: errorString})
+  console.log(errorString);
+  M.toast({ html: errorString });
 }
 
 //get key
@@ -108,29 +108,7 @@ function getUserData() {
   let count = document.getElementById('count').value;
   let flag;
 
-  document.getElementById('product-name').value = '';
-  document.getElementById('amount').value = '';
-  document.getElementById('count').value = '';
-
-  document
-    .getElementById('product-name')
-    .previousElementSibling.classList.remove('active');
-  document
-    .getElementById('product-name')
-    .nextElementSibling.classList.remove('active');
-  document
-    .getElementById('amount')
-    .previousElementSibling.classList.remove('active');
-  document
-    .getElementById('amount')
-    .nextElementSibling.classList.remove('active');
-  document
-    .getElementById('count')
-    .previousElementSibling.classList.remove('active');
-  document
-    .getElementById('count')
-    .nextElementSibling.classList.remove('active');
-  console.log(productName, amount, count);
+  // console.log(productName, amount, count);
   if (
     productName === '' ||
     amount === '' ||
@@ -144,15 +122,38 @@ function getUserData() {
   }
 
   if (productName === '') {
-    alertError("Product Name can not be Empty");
-  }else if(amount === ''){
-    alertError("Amount can not be Empty");
-  }else if(count === ''){
-    alertError("Count can not be Empty");
-  }else if(amount <0){
-    alertError("Amount can not be Negative");
-  }else if(count < 0){
-    alertError("Count can not be Negative");
+    alertError('Product Name can not be Empty');
+  } else if (amount === '') {
+    alertError('Amount can not be Empty');
+  } else if (count === '') {
+    alertError('Count can not be Empty');
+  } else if (amount < 0) {
+    alertError('Amount can not be Negative');
+  } else if (count < 0) {
+    alertError('Count can not be Negative');
+  }
+  if (flag) {
+    document.getElementById('product-name').value = '';
+    document.getElementById('amount').value = '';
+    document.getElementById('count').value = '';
+    document
+      .getElementById('product-name')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('product-name')
+      .nextElementSibling.classList.remove('active');
+    document
+      .getElementById('amount')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('amount')
+      .nextElementSibling.classList.remove('active');
+    document
+      .getElementById('count')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('count')
+      .nextElementSibling.classList.remove('active');
   }
   return [flag, productName, amount, count];
 }
@@ -179,6 +180,7 @@ function addProduct() {
     Object.assign(data, x);
     localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('keys', JSON.stringify(keys));
+    alertError('Item added successfully');
   } else {
     console.log('invalid input');
   }
@@ -187,16 +189,10 @@ function addProduct() {
   console.log(keys[0]);
 }
 
-// addProduct();
-// localSetup();
-// console.log(data);
-// console.log(keys[0]);
-// clearAllData();
-
 document.getElementById('delete-data').addEventListener('click', clearAllData);
 
 function clearAllData() {
   localStorage.clear();
   localSetup();
-  console.log('Cleared local storage');
+  alertError('Cleared local storage successfully');
 }
