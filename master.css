@@ -37,7 +37,7 @@ input:not([type]):focus:not([readonly]) + label, input[type="text"]:not(.browser
   margin-bottom: 15px;
 
 }
-.add-product{
+.add-product,.time-line{
     padding: 15px 10px;
     margin-top: 20px;
     
@@ -51,4 +51,13 @@ input:not([type]):focus:not([readonly]) + label, input[type="text"]:not(.browser
     margin-top: 8px;
     margin-bottom: 8px;
   }
+}
+.delete-icon{
+ margin-right:0px !important;
+}
+.collapsible-body{
+  padding: 1rem;
+}
+.collapsible-body p {
+  margin: 10px 0px;
 }
