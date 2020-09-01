@@ -294,6 +294,7 @@ function displayTimeLine() {
       localStorage.setItem('data', JSON.stringify(data));
       localStorage.setItem('keys', JSON.stringify(keys));
       displayTimeLine();
+      e.preventDefault();
     })
   );
 }
