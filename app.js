@@ -204,13 +204,20 @@ function addProduct() {
 
 document.getElementById('delete-data').addEventListener('click', clearAllData);
 
-
 // delete all data from the local storage
 function clearAllData() {
-  localStorage.clear();
-  localSetup();
-  alertError('Cleared local storage successfully');
-  displayTimeLine();
+  confirmDelete('Once deleted, you will not be able to recover all data!').then(
+    (flag) => {
+      if (flag) {
+        localStorage.clear();
+        localSetup();
+        displayTimeLine();
+        swal('Local storage cleared successfully', {
+          icon: 'success',
+        });
+      }
+    }
+  );
 }
 
 // function to give collapsible effect in time line data
@@ -234,12 +241,10 @@ function changeCollapsible(e) {
         );
       }
     }
-  } catch (error) {
-    
-  }
+  } catch (error) {}
 }
 
-//gets data from local storage and create a html and add to time line every 
+//gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
   let [data, keys] = localSetup();
   console.table(data);
@@ -288,23 +293,37 @@ function displayTimeLine() {
   let deleteIcon = document.querySelectorAll('.delete-icon');
   deleteIcon.forEach((ele) =>
     ele.addEventListener('click', (e) => {
-      console.log(e.target.parentElement.parentElement.className);
+      // console.log(e.target.parentElement.parentElement.className);
       let ID = e.target.parentElement.parentElement.className;
-      // console.log(data, keys);
-      delete data[ID];
-      const index = keys[0].indexOf(+ID);
-      if (index > -1) {
-        keys[0].splice(index, 1);
-      }
-      // console.log(data);
-      // console.log(keys);
-
-      localStorage.setItem('data', JSON.stringify(data));
-      localStorage.setItem('keys', JSON.stringify(keys));
-      displayTimeLine();
+      confirmDelete(
+        'Once deleted, you will not be able to recover this data!'
+      ).then((flag) => {
+        if (flag) {
+          delete data[ID];
+          const index = keys[0].indexOf(+ID);
+          if (index > -1) {
+            keys[0].splice(index, 1);
+          }
+          localStorage.setItem('data', JSON.stringify(data));
+          localStorage.setItem('keys', JSON.stringify(keys));
+          displayTimeLine();
+          swal('Data has been deleted!', {
+            icon: 'success',
+          });
+        }
+      });
       e.preventDefault();
     })
   );
 }
 
+function confirmDelete(string) {
+  return swal({
+    title: 'Are you sure?',
+    text: string,
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  });
+}
 displayTimeLine();
