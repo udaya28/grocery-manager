@@ -78,9 +78,12 @@ function getKey() {
 }
 
 //add event listener for add product
-const addProductButton = document
-  .getElementById('addProduct')
-  .addEventListener('click', addProduct);
+document.getElementById('addProduct').addEventListener('click', addProduct);
+document.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    addProduct();
+  }
+});
 //data declaration
 var keys = {};
 var data = {};
