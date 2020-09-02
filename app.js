@@ -34,11 +34,12 @@ function changeTab(e) {
   }
 }
 
+// popup alert
 function alertError(errorString) {
   M.toast({ html: errorString });
 }
 
-//get key
+//get unique key
 function getKey() {
   let now = new Date();
   let year = now.getFullYear().toString();
@@ -84,11 +85,12 @@ document.addEventListener('keypress', function (e) {
     addProduct();
   }
 });
+
 //data declaration
 var keys = {};
 var data = {};
 
-//get data from the local storage
+//set and get data from the local storage
 function localSetup() {
   if (localStorage.getItem('data') == null) {
     localStorage.setItem('data', JSON.stringify({}));
@@ -115,6 +117,7 @@ function localSetup() {
   return [data, keys];
 }
 
+//get data from the form
 function getUserData() {
   let productName = document.getElementById('product-name').value;
   let amount = document.getElementById('amount').value;
@@ -171,6 +174,7 @@ function getUserData() {
   return [flag, productName, amount, count];
 }
 
+// function invokes when add is clicked and add product to local storage and calls displayTimeLine(); to display data
 function addProduct() {
   localSetup();
   let flag, productName, amount, count;
@@ -200,6 +204,8 @@ function addProduct() {
 
 document.getElementById('delete-data').addEventListener('click', clearAllData);
 
+
+// delete all data from the local storage
 function clearAllData() {
   localStorage.clear();
   localSetup();
@@ -207,6 +213,7 @@ function clearAllData() {
   displayTimeLine();
 }
 
+// function to give collapsible effect in time line data
 function changeCollapsible(e) {
   // console.log(e.target.parentElement);
   // console.log(e.target.parentElement.children[1].style.display)
@@ -228,10 +235,11 @@ function changeCollapsible(e) {
       }
     }
   } catch (error) {
-    // console.log(error)
+    
   }
 }
 
+//gets data from local storage and create a html and add to time line every 
 function displayTimeLine() {
   let [data, keys] = localSetup();
   console.table(data);
