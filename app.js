@@ -35,7 +35,6 @@ function changeTab(e) {
 }
 
 function alertError(errorString) {
-  console.log(errorString);
   M.toast({ html: errorString });
 }
 
@@ -99,7 +98,18 @@ function localSetup() {
   } else {
     keys = JSON.parse(localStorage.getItem('keys'));
   }
-  return true;
+
+  if (keys[0] == undefined || keys[0].length == 0) {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : none;');
+    // console.log(document.getElementsByClassName('time-line'));
+  } else {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : block;');
+  }
+  return [data, keys];
 }
 
 function getUserData() {
@@ -174,19 +184,15 @@ function addProduct() {
       name: productName,
       amount: +amount,
       count: +count,
-      total: amount * amount,
+      total: amount * count,
       time: time,
     };
     Object.assign(data, x);
     localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('keys', JSON.stringify(keys));
     alertError('Item added successfully');
-  } else {
-    console.log('invalid input');
+    displayTimeLine();
   }
-
-  console.log(data);
-  console.log(keys[0]);
 }
 
 document.getElementById('delete-data').addEventListener('click', clearAllData);
@@ -195,4 +201,99 @@ function clearAllData() {
   localStorage.clear();
   localSetup();
   alertError('Cleared local storage successfully');
+  displayTimeLine();
 }
+
+function changeCollapsible(e) {
+  // console.log(e.target.parentElement);
+  // console.log(e.target.parentElement.children[1].style.display)
+  try {
+    if (e.target.parentElement.children[1].nodeName == 'DIV') {
+      if (
+        e.target.parentElement.children[1].style.display == '' ||
+        e.target.parentElement.children[1].style.display == 'block'
+      ) {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : none;'
+        );
+      } else {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : block;'
+        );
+      }
+    }
+  } catch (error) {
+    // console.log(error)
+  }
+}
+
+function displayTimeLine() {
+  let [data, keys] = localSetup();
+  console.table(data);
+  console.log(keys);
+
+  let collapsible = document.getElementsByClassName('collapsible')[0];
+  let html = '';
+  keys[0].forEach((key) => {
+    // console.log(data[key]);
+    let product = data[key];
+    let name = product.name;
+    let amount = product.amount;
+    let count = product.count;
+    let total = product.total;
+    let time = new Date(product.time);
+    let date = time.getUTCDate();
+    let month = time.getMonth();
+    let year = time.getFullYear();
+    let timing = time.toString().split(' ')[4];
+    let day = time.toString().split(' ')[0];
+
+    html += `
+    <li class='${key}'>
+         <div class="collapsible-header">
+             ${name}
+             <span class="badge"> <b> ₹ ${total}</b></span>
+             <i class="material-icons delete-icon">cancel</i>
+         </div>
+         <div class="collapsible-body">
+             <p>Price per item :<b> ₹${amount}</b></p>
+             <p>Product count  :<b> ${count}</b></p
+             <p>Date           :<b> ${date}-${
+      month + 1
+    }-${year} (${day})</b></p>
+             <p>Time           :<b> ${timing}</b><p>
+         </div>
+    </li>`;
+  });
+
+  collapsible.innerHTML = html;
+
+  let collapsibleHeader = document.querySelectorAll('.collapsible-header');
+  collapsibleHeader.forEach((ele) =>
+    ele.addEventListener('click', (e) => changeCollapsible(e))
+  );
+  let deleteIcon = document.querySelectorAll('.delete-icon');
+  deleteIcon.forEach((ele) =>
+    ele.addEventListener('click', (e) => {
+      console.log(e.target.parentElement.parentElement.className);
+      let ID = e.target.parentElement.parentElement.className;
+      // console.log(data, keys);
+      delete data[ID];
+      const index = keys[0].indexOf(+ID);
+      if (index > -1) {
+        keys[0].splice(index, 1);
+      }
+      // console.log(data);
+      // console.log(keys);
+
+      localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem('keys', JSON.stringify(keys));
+      displayTimeLine();
+      e.preventDefault();
+    })
+  );
+}
+
+displayTimeLine();
