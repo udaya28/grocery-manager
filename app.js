@@ -184,7 +184,7 @@ function addProduct() {
       name: productName,
       amount: +amount,
       count: +count,
-      total: amount * amount,
+      total: amount * count,
       time: time,
     };
     Object.assign(data, x);
