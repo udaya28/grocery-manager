@@ -35,11 +35,22 @@ function changeTab(e) {
 }
 
 document.getElementById("add-product-icon").addEventListener('click',()=>{
-  let icon = document.getElementsByClassName("create-product-icon-box");
-  let card = document.getElementsByClassName("create-product-form");
-
+  let icon = document.getElementsByClassName("create-product-icon-box")[0];
+  let card = document.getElementsByClassName("create-product-form")[0];
+  console.log(icon)
+  console.log(card)
+  icon.style.display = "none";
+  card.style.display = "block"
 })
 
+document.getElementById("add-product-cancel").addEventListener('click',()=>{
+  let icon = document.getElementsByClassName("create-product-icon-box")[0];
+  let card = document.getElementsByClassName("create-product-form")[0];
+  console.log(icon)
+  console.log(card)
+  icon.style.display = "flex";
+  card.style.display = "none"
+})
 
 
 

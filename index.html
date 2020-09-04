@@ -33,34 +33,35 @@
 
 
         <div class="container-fluid" id="home" style="display: block;">
-            <div class="container create-product " style="display:block;">
-                <div class="row right create-product-icon-box">
+            <div class="container create-product ">
+                <div class="row create-product-icon-box" style="display:flex;">
                     <div class="col heading">
                         Add New Product
                     </div>
+
                     <div class="col">
-                        <a class="btn-floating btn-large waves-effect waves-light light-blue darken-2 " id="add-product-icon"><i
-                                class="material-icons">add</i></a>
+                        <a class="btn-floating btn-large waves-effect waves-light light-blue darken-2 "
+                            id="add-product-icon"><i class="material-icons">add</i></a>
                     </div>
 
                 </div>
-                <div class="create-product-form row rounded z-depth-2" style="display: block;">
+                <div class="create-product-form row rounded z-depth-2" style="display: none;">
                     <div class="heading">
-                        Create Product
+                        New Product
                     </div>
                     <div class="input-field col s12">
                         <i class="material-icons prefix "> shopping_cart</i>
                         <input type="text" id="product-name" class="autocomplete">
                         <label for="product-name" class="">Product Name</label>
                     </div>
-    
+
                     <div class="input-field col s12">
                         <i class="material-icons prefix"> monetization_on</i>
                         <input type="number" id="amount">
                         <label for="amount">Amount per unit</label>
                     </div>
 
-                    
+
                     <button class="btn waves-effect waves-light right light-blue darken-2" type="submit" name="action"
                         id="add-product-button">Add
                         <i class="material-icons right">send</i>
@@ -73,7 +74,7 @@
 
             </div>
 
-            <div class="container add-product row rounded z-depth-2 ">
+            <!-- <div class="container add-product row rounded z-depth-2 ">
                 <div class="heading">
                     Add product to time line
                 </div>
@@ -97,8 +98,8 @@
                     id="addProduct">Add
                     <i class="material-icons right">send</i>
                 </button>
-            </div>
-            <div class="container time-line row rounded z-depth-2 ">
+            </div> -->
+            <!-- <div class="container time-line row rounded z-depth-2" style="display: none;">
                 <div class="heading ">
                     Time line
                 </div>
@@ -108,7 +109,7 @@
 
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
