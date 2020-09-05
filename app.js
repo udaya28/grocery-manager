@@ -34,361 +34,397 @@ function changeTab(e) {
   }
 }
 
-document.getElementById("add-product-icon").addEventListener('click',()=>{
-  let icon = document.getElementsByClassName("create-product-icon-box")[0];
-  let card = document.getElementsByClassName("create-product-form")[0];
-  console.log(icon)
-  console.log(card)
-  icon.style.display = "none";
-  card.style.display = "block"
-})
+//event listeners for add new product
+document.getElementById('add-product-icon').addEventListener('click', () => {
+  let icon = document.getElementsByClassName('create-product-icon-box')[0];
+  let card = document.getElementsByClassName('create-product-form')[0];
+  icon.style.display = 'none';
+  card.style.display = 'block';
+});
 
-document.getElementById("add-product-cancel").addEventListener('click',()=>{
-  let icon = document.getElementsByClassName("create-product-icon-box")[0];
-  let card = document.getElementsByClassName("create-product-form")[0];
-  console.log(icon)
-  console.log(card)
-  icon.style.display = "flex";
-  card.style.display = "none"
-})
+document.getElementById('add-product-cancel').addEventListener('click', () => {
+  let icon = document.getElementsByClassName('create-product-icon-box')[0];
+  let card = document.getElementsByClassName('create-product-form')[0];
+  icon.style.display = 'flex';
+  card.style.display = 'none';
+  let name = document.getElementById('new-product-name');
+  let amount = document.getElementById('new-amount');
+  name.value = '';
+  amount.value = '';
+  name.previousElementSibling.classList.remove('active');
+  name.nextElementSibling.classList.remove('active');
+  amount.previousElementSibling.classList.remove('active');
+  amount.nextElementSibling.classList.remove('active');
+});
 
+document.getElementById('add-product-button').addEventListener('click', () => {
+  let name = document.getElementById('new-product-name').value;
+  let amountString = document.getElementById('new-amount').value;
+  console.log(name, amountString);
+  if (isValidName(name) && isValidNumber(amountString)) {
+    let amount = Number(amountString);
+    console.log(name, amount);
+  }
+});
 
+function isValidName(name) {
+  if (name == '') {
+    alertError('Product name can not be empty');
+    return false;
+  } else {
+    return true;
+  }
+}
 
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function isValidNumber(number) {
+  if (number === '') {
+    alertError('Amount can not be empty');
+    return false;
+  } else if (isNaN(Number(number))) {
+    alertError('Amount must be a number');
+    return false;
+  } else if (Number(number) < 0) {
+    alertError('Amount can not be negative');
+    return false;
+  } else {
+    return true;
+  }
+}
 
 // popup alert
-// function alertError(errorString) {
-//   M.toast({ html: errorString });
-// }
+function alertError(errorString) {
+  M.toast({ html: errorString });
+}
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-// //get unique key
-// function getKey() {
-//   let now = new Date();
-//   let year = now.getFullYear().toString();
-//   let month = (now.getMonth() + 1).toString();
-//   let date = now.getDate().toString();
-//   let hours = now.getHours().toString();
-//   let minutes = now.getMinutes().toString();
-//   let seconds = now.getSeconds().toString();
-//   let milliSecond = now.getMilliseconds().toString();
-//   if (month.length == 1) {
-//     month = '0' + month;
-//   }
-//   if (date.length == 1) {
-//     date = '0' + date;
-//   }
-//   if (hours.length == 1) {
-//     hours = '0' + hours;
-//   }
-//   if (minutes.length == 1) {
-//     minutes = '0' + minutes;
-//   }
-//   if (seconds.length == 1) {
-//     seconds = '0' + seconds;
-//   }
-//   if (milliSecond.length == 1) {
-//     milliSecond = '00' + milliSecond;
-//   } else if (milliSecond.length == 2) {
-//     milliSecond = '0' + milliSecond;
-//   }
-//   let key = parseInt(
-//     year + month + date + hours + minutes + seconds + milliSecond
-//   );
-//   if (key.toString().length != 17) {
-//     throw 'Key Generation Error : Key length is differed';
-//   }
-//   return [key, now];
-// }
+/*
+//get unique key
 
-// //add event listener for add product
-// document.getElementById('addProduct').addEventListener('click', addProduct);
-// document.addEventListener('keypress', function (e) {
-//   if (e.key === 'Enter') {
-//     addProduct();
-//   }
-// });
+function getKey() {
+  let now = new Date();
+  let year = now.getFullYear().toString();
+  let month = (now.getMonth() + 1).toString();
+  let date = now.getDate().toString();
+  let hours = now.getHours().toString();
+  let minutes = now.getMinutes().toString();
+  let seconds = now.getSeconds().toString();
+  let milliSecond = now.getMilliseconds().toString();
+  if (month.length == 1) {
+    month = '0' + month;
+  }
+  if (date.length == 1) {
+    date = '0' + date;
+  }
+  if (hours.length == 1) {
+    hours = '0' + hours;
+  }
+  if (minutes.length == 1) {
+    minutes = '0' + minutes;
+  }
+  if (seconds.length == 1) {
+    seconds = '0' + seconds;
+  }
+  if (milliSecond.length == 1) {
+    milliSecond = '00' + milliSecond;
+  } else if (milliSecond.length == 2) {
+    milliSecond = '0' + milliSecond;
+  }
+  let key = parseInt(
+    year + month + date + hours + minutes + seconds + milliSecond
+  );
+  if (key.toString().length != 17) {
+    throw 'Key Generation Error : Key length is differed';
+  }
+  return [key, now];
+}
 
-// //data declaration
-// var keys = {};
-// var data = {};
+//add event listener for add product
+document.getElementById('addProduct').addEventListener('click', addProduct);
+document.addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    addProduct();
+  }
+});
 
-// //set and get data from the local storage
-// function localSetup() {
-//   if (localStorage.getItem('data') == null) {
-//     localStorage.setItem('data', JSON.stringify({}));
-//   } else {
-//     data = JSON.parse(localStorage.getItem('data'));
-//   }
+//data declaration
+var keys = {};
+var data = {};
 
-//   if (localStorage.getItem('keys') == null) {
-//     localStorage.setItem('keys', JSON.stringify({ 0: [] }));
-//   } else {
-//     keys = JSON.parse(localStorage.getItem('keys'));
-//   }
+//set and get data from the local storage
+function localSetup() {
+  if (localStorage.getItem('data') == null) {
+    localStorage.setItem('data', JSON.stringify({}));
+  } else {
+    data = JSON.parse(localStorage.getItem('data'));
+  }
 
-//   if (keys[0] == undefined || keys[0].length == 0) {
-//     document
-//       .getElementsByClassName('time-line')[0]
-//       .setAttribute('style', 'display : none;');
-//     // console.log(document.getElementsByClassName('time-line'));
-//   } else {
-//     document
-//       .getElementsByClassName('time-line')[0]
-//       .setAttribute('style', 'display : block;');
-//   }
-//   return [data, keys];
-// }
+  if (localStorage.getItem('keys') == null) {
+    localStorage.setItem('keys', JSON.stringify({ 0: [] }));
+  } else {
+    keys = JSON.parse(localStorage.getItem('keys'));
+  }
 
-// //get data from the form
-// function getUserData() {
-//   let productName = document.getElementById('product-name').value;
-//   let amount = document.getElementById('amount').value;
-//   let count = document.getElementById('count').value;
-//   let flag;
+  if (keys[0] == undefined || keys[0].length == 0) {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : none;');
+    // console.log(document.getElementsByClassName('time-line'));
+  } else {
+    document
+      .getElementsByClassName('time-line')[0]
+      .setAttribute('style', 'display : block;');
+  }
+  return [data, keys];
+}
 
-//   // console.log(productName, amount, count);
-//   if (
-//     productName === '' ||
-//     amount === '' ||
-//     count === '' ||
-//     amount <= 0 ||
-//     count <= 0
-//   ) {
-//     flag = false;
-//   } else {
-//     flag = true;
-//   }
+//get data from the form
+function getUserData() {
+  let productName = document.getElementById('product-name').value;
+  let amount = document.getElementById('amount').value;
+  let count = document.getElementById('count').value;
+  let flag;
 
-//   if (productName === '') {
-//     alertError('Product Name can not be Empty');
-//   } else if (amount === '') {
-//     alertError('Amount can not be Empty');
-//   } else if (count === '') {
-//     alertError('Count can not be Empty');
-//   } else if (amount < 0) {
-//     alertError('Amount can not be Negative');
-//   } else if (count < 0) {
-//     alertError('Count can not be Negative');
-//   }
-//   if (flag) {
-//     document.getElementById('product-name').value = '';
-//     document.getElementById('amount').value = '';
-//     document.getElementById('count').value = '';
-//     document
-//       .getElementById('product-name')
-//       .previousElementSibling.classList.remove('active');
-//     document
-//       .getElementById('product-name')
-//       .nextElementSibling.classList.remove('active');
-//     document
-//       .getElementById('amount')
-//       .previousElementSibling.classList.remove('active');
-//     document
-//       .getElementById('amount')
-//       .nextElementSibling.classList.remove('active');
-//     document
-//       .getElementById('count')
-//       .previousElementSibling.classList.remove('active');
-//     document
-//       .getElementById('count')
-//       .nextElementSibling.classList.remove('active');
-//   }
-//   return [flag, productName, amount, count];
-// }
+  // console.log(productName, amount, count);
+  if (
+    productName === '' ||
+    amount === '' ||
+    count === '' ||
+    amount <= 0 ||
+    count <= 0
+  ) {
+    flag = false;
+  } else {
+    flag = true;
+  }
 
-// // function invokes when add is clicked and add product to local storage and calls displayTimeLine(); to display data
-// function addProduct() {
-//   localSetup();
-//   let flag, productName, amount, count;
-//   const arr = getUserData();
-//   flag = arr[0];
-//   if (flag) {
-//     productName = arr[1];
-//     amount = arr[2];
-//     count = arr[3];
-//     let [key, time] = getKey();
-//     keys[0].unshift(key);
-//     let x = {};
-//     x[key] = {
-//       name: productName,
-//       amount: +amount,
-//       count: +count,
-//       total: amount * count,
-//       time: time,
-//     };
-//     Object.assign(data, x);
-//     localStorage.setItem('data', JSON.stringify(data));
-//     localStorage.setItem('keys', JSON.stringify(keys));
-//     alertError('Item added successfully');
-//     displayTimeLine();
-//   }
-// }
+  if (productName === '') {
+    alertError('Product Name can not be Empty');
+  } else if (amount === '') {
+    alertError('Amount can not be Empty');
+  } else if (count === '') {
+    alertError('Count can not be Empty');
+  } else if (amount < 0) {
+    alertError('Amount can not be Negative');
+  } else if (count < 0) {
+    alertError('Count can not be Negative');
+  }
+  if (flag) {
+    document.getElementById('product-name').value = '';
+    document.getElementById('amount').value = '';
+    document.getElementById('count').value = '';
+    document
+      .getElementById('product-name')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('product-name')
+      .nextElementSibling.classList.remove('active');
+    document
+      .getElementById('amount')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('amount')
+      .nextElementSibling.classList.remove('active');
+    document
+      .getElementById('count')
+      .previousElementSibling.classList.remove('active');
+    document
+      .getElementById('count')
+      .nextElementSibling.classList.remove('active');
+  }
+  return [flag, productName, amount, count];
+}
 
-// document.getElementById('delete-data').addEventListener('click', clearAllData);
+// function invokes when add is clicked and add product to local storage and calls displayTimeLine(); to display data
+function addProduct() {
+  localSetup();
+  let flag, productName, amount, count;
+  const arr = getUserData();
+  flag = arr[0];
+  if (flag) {
+    productName = arr[1];
+    amount = arr[2];
+    count = arr[3];
+    let [key, time] = getKey();
+    keys[0].unshift(key);
+    let x = {};
+    x[key] = {
+      name: productName,
+      amount: +amount,
+      count: +count,
+      total: amount * count,
+      time: time,
+    };
+    Object.assign(data, x);
+    localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem('keys', JSON.stringify(keys));
+    alertError('Item added successfully');
+    displayTimeLine();
+  }
+}
 
-// // delete all data from the local storage
-// function clearAllData() {
-//   confirmDelete('Once deleted, you will not be able to recover all data!').then(
-//     (flag) => {
-//       if (flag) {
-//         localStorage.clear();
-//         localSetup();
-//         displayTimeLine();
-//         swal('Local storage cleared successfully', {
-//           icon: 'success',
-//         });
-//       }
-//     }
-//   );
-// }
+document.getElementById('delete-data').addEventListener('click', clearAllData);
 
-// // function to give collapsible effect in time line data
-// function changeCollapsible(e) {
-//   // console.log(e.target.parentElement);
-//   // console.log(e.target.parentElement.children[1].style.display)
-//   try {
-//     if (e.target.parentElement.children[1].nodeName == 'DIV') {
-//       if (
-//         e.target.parentElement.children[1].style.display == '' ||
-//         e.target.parentElement.children[1].style.display == 'block'
-//       ) {
-//         e.target.parentElement.children[1].setAttribute(
-//           'style',
-//           'display : none;'
-//         );
-//       } else {
-//         e.target.parentElement.children[1].setAttribute(
-//           'style',
-//           'display : block;'
-//         );
-//       }
-//     }
-//   } catch (error) {}
-// }
+// delete all data from the local storage
+function clearAllData() {
+  confirmDelete('Once deleted, you will not be able to recover all data!').then(
+    (flag) => {
+      if (flag) {
+        localStorage.clear();
+        localSetup();
+        displayTimeLine();
+        swal('Local storage cleared successfully', {
+          icon: 'success',
+        });
+      }
+    }
+  );
+}
 
-// //gets data from local storage and create a html and add to time line every
-// function displayTimeLine() {
-//   let [data, keys] = localSetup();
-//   console.table(data);
-//   console.log(keys);
+// function to give collapsible effect in time line data
+function changeCollapsible(e) {
+  // console.log(e.target.parentElement);
+  // console.log(e.target.parentElement.children[1].style.display)
+  try {
+    if (e.target.parentElement.children[1].nodeName == 'DIV') {
+      if (
+        e.target.parentElement.children[1].style.display == '' ||
+        e.target.parentElement.children[1].style.display == 'block'
+      ) {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : none;'
+        );
+      } else {
+        e.target.parentElement.children[1].setAttribute(
+          'style',
+          'display : block;'
+        );
+      }
+    }
+  } catch (error) {}
+}
 
-//   let collapsible = document.getElementsByClassName('collapsible')[0];
-//   let html = '';
-//   keys[0].forEach((key) => {
-//     // console.log(data[key]);
-//     let product = data[key];
-//     let name = product.name;
-//     let amount = product.amount;
-//     let count = product.count;
-//     let total = product.total;
-//     let time = new Date(product.time);
-//     let date = time.getUTCDate();
-//     let month = time.getMonth();
-//     let year = time.getFullYear();
-//     let timing = time.toString().split(' ')[4];
-//     let day = time.toString().split(' ')[0];
+//gets data from local storage and create a html and add to time line every
+function displayTimeLine() {
+  let [data, keys] = localSetup();
+  console.table(data);
+  console.log(keys);
 
-//     html += `
-//     <li class='${key}'>
-//          <div class="collapsible-header">
-//              ${name}
-//              <span class="badge"> <b> ₹ ${total}</b></span>
-//              <i class="material-icons delete-icon">cancel</i>
-//          </div>
-//          <div class="collapsible-body">
-//              <p>Price per item :<b> ₹${amount}</b></p>
-//              <p>Product count  :<b> ${count}</b></p
-//              <p>Date           :<b> ${date}-${
-//       month + 1
-//     }-${year} (${day})</b></p>
-//              <p>Time           :<b> ${timing}</b><p>
-//          </div>
-//     </li>`;
-//   });
+  let collapsible = document.getElementsByClassName('collapsible')[0];
+  let html = '';
+  keys[0].forEach((key) => {
+    // console.log(data[key]);
+    let product = data[key];
+    let name = product.name;
+    let amount = product.amount;
+    let count = product.count;
+    let total = product.total;
+    let time = new Date(product.time);
+    let date = time.getUTCDate();
+    let month = time.getMonth();
+    let year = time.getFullYear();
+    let timing = time.toString().split(' ')[4];
+    let day = time.toString().split(' ')[0];
 
-//   collapsible.innerHTML = html;
+    html += `
+    <li class='${key}'>
+         <div class="collapsible-header">
+             ${name}
+             <span class="badge"> <b> ₹ ${total}</b></span>
+             <i class="material-icons delete-icon">cancel</i>
+         </div>
+         <div class="collapsible-body">
+             <p>Price per item :<b> ₹${amount}</b></p>
+             <p>Product count  :<b> ${count}</b></p
+             <p>Date           :<b> ${date}-${
+      month + 1
+    }-${year} (${day})</b></p>
+             <p>Time           :<b> ${timing}</b><p>
+         </div>
+    </li>`;
+  });
 
-//   let collapsibleHeader = document.querySelectorAll('.collapsible-header');
-//   collapsibleHeader.forEach((ele) =>
-//     ele.addEventListener('click', (e) => changeCollapsible(e))
-//   );
-//   let deleteIcon = document.querySelectorAll('.delete-icon');
-//   deleteIcon.forEach((ele) =>
-//     ele.addEventListener('click', (e) => {
-//       // console.log(e.target.parentElement.parentElement.className);
-//       let ID = e.target.parentElement.parentElement.className;
-//       confirmDelete(
-//         'Once deleted, you will not be able to recover this data!'
-//       ).then((flag) => {
-//         if (flag) {
-//           delete data[ID];
-//           const index = keys[0].indexOf(+ID);
-//           if (index > -1) {
-//             keys[0].splice(index, 1);
-//           }
-//           localStorage.setItem('data', JSON.stringify(data));
-//           localStorage.setItem('keys', JSON.stringify(keys));
-//           displayTimeLine();
-//           swal('Data has been deleted!', {
-//             icon: 'success',
-//           });
-//         }
-//       });
-//       e.preventDefault();
-//     })
-//   );
-// }
+  collapsible.innerHTML = html;
 
-// function confirmDelete(string) {
-//   return swal({
-//     title: 'Are you sure?',
-//     text: string,
-//     icon: 'warning',
-//     buttons: true,
-//     dangerMode: true,
-//   });
-// }
-// displayTimeLine();
+  let collapsibleHeader = document.querySelectorAll('.collapsible-header');
+  collapsibleHeader.forEach((ele) =>
+    ele.addEventListener('click', (e) => changeCollapsible(e))
+  );
+  let deleteIcon = document.querySelectorAll('.delete-icon');
+  deleteIcon.forEach((ele) =>
+    ele.addEventListener('click', (e) => {
+      // console.log(e.target.parentElement.parentElement.className);
+      let ID = e.target.parentElement.parentElement.className;
+      confirmDelete(
+        'Once deleted, you will not be able to recover this data!'
+      ).then((flag) => {
+        if (flag) {
+          delete data[ID];
+          const index = keys[0].indexOf(+ID);
+          if (index > -1) {
+            keys[0].splice(index, 1);
+          }
+          localStorage.setItem('data', JSON.stringify(data));
+          localStorage.setItem('keys', JSON.stringify(keys));
+          displayTimeLine();
+          swal('Data has been deleted!', {
+            icon: 'success',
+          });
+        }
+      });
+      e.preventDefault();
+    })
+  );
+}
+
+function confirmDelete(string) {
+  return swal({
+    title: 'Are you sure?',
+    text: string,
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  });
+}
+displayTimeLine();
+*/
