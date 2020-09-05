@@ -33,9 +33,48 @@
 
 
         <div class="container-fluid" id="home" style="display: block;">
+            <div class="container create-product ">
+                <div class="row create-product-icon-box" style="display:flex;">
+                    <div class="col heading">
+                        Add New Product
+                    </div>
+
+                    <div class="col">
+                        <a class="btn-floating btn-large waves-effect waves-light light-blue darken-2 "
+                            id="add-product-icon"><i class="material-icons">add</i></a>
+                    </div>
+
+                </div>
+                <div class="create-product-form row rounded z-depth-2" style="display: none;">
+                    <div class="heading">
+                        Add New Product
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix "> shopping_cart</i>
+                        <input type="text" id="new-product-name" >
+                        <label for="new-product-name" class="">Product Name</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix"> monetization_on</i>
+                        <input type="text" inputmode="numeric" id="new-amount">
+                        <label for="new-amount">Amount per unit</label>
+                    </div>
 
 
-            <div class="container add-product row rounded z-depth-2 ">
+                    <button class="btn waves-effect waves-light right light-blue darken-2"  name="action"
+                        id="add-product-button">Add
+                        <i class="material-icons right">send</i>
+                    </button>
+                    <button class="btn waves-effect waves-light right light-blue darken-2" s name="action"
+                        id="add-product-cancel">cancel
+                        <i class="material-icons right">cancel</i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- <div class="container add-product row rounded z-depth-2 ">
                 <div class="heading">
                     Add product to time line
                 </div>
@@ -44,6 +83,7 @@
                     <input type="text" id="product-name" class="autocomplete">
                     <label for="product-name" class="">Product Name</label>
                 </div>
+
                 <div class="input-field col s12">
                     <i class="material-icons prefix"> monetization_on</i>
                     <input type="number" id="amount">
@@ -54,23 +94,22 @@
                     <input type="number" id="count">
                     <label for="count">Count per unit</label>
                 </div>
-                <!-- <div class="alert-invalid"></div> -->
-                <button class="btn waves-effect waves-light right light-blue darken-3" type="submit" name="action"
+                <button class="btn waves-effect waves-light right light-blue darken-2" type="submit" name="action"
                     id="addProduct">Add
                     <i class="material-icons right">send</i>
                 </button>
-            </div>
-            <div class="container time-line row rounded z-depth-2 ">
+            </div> -->
+            <!-- <div class="container time-line row rounded z-depth-2" style="display: none;">
                 <div class="heading ">
                     Time line
                 </div>
 
                 <div class="details">
                     <ul class="collapsible">
-                        
+
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -119,7 +158,7 @@
     <!-- Compiled and minified JavaScript -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <script src="app.js"></script>
-    
+
 </body>
 
 </html>

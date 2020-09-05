@@ -34,12 +34,112 @@ function changeTab(e) {
   }
 }
 
+//event listeners for add new product
+document.getElementById('add-product-icon').addEventListener('click', () => {
+  let icon = document.getElementsByClassName('create-product-icon-box')[0];
+  let card = document.getElementsByClassName('create-product-form')[0];
+  icon.style.display = 'none';
+  card.style.display = 'block';
+});
+
+document.getElementById('add-product-cancel').addEventListener('click', () => {
+  let icon = document.getElementsByClassName('create-product-icon-box')[0];
+  let card = document.getElementsByClassName('create-product-form')[0];
+  icon.style.display = 'flex';
+  card.style.display = 'none';
+  let name = document.getElementById('new-product-name');
+  let amount = document.getElementById('new-amount');
+  name.value = '';
+  amount.value = '';
+  name.previousElementSibling.classList.remove('active');
+  name.nextElementSibling.classList.remove('active');
+  amount.previousElementSibling.classList.remove('active');
+  amount.nextElementSibling.classList.remove('active');
+});
+
+document.getElementById('add-product-button').addEventListener('click', () => {
+  let name = document.getElementById('new-product-name').value;
+  let amountString = document.getElementById('new-amount').value;
+  console.log(name, amountString);
+  if (isValidName(name) && isValidNumber(amountString)) {
+    let amount = Number(amountString);
+    console.log(name, amount);
+  }
+});
+
+function isValidName(name) {
+  if (name == '') {
+    alertError('Product name can not be empty');
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function isValidNumber(number) {
+  if (number === '') {
+    alertError('Amount can not be empty');
+    return false;
+  } else if (isNaN(Number(number))) {
+    alertError('Amount must be a number');
+    return false;
+  } else if (Number(number) < 0) {
+    alertError('Amount can not be negative');
+    return false;
+  } else {
+    return true;
+  }
+}
+
 // popup alert
 function alertError(errorString) {
   M.toast({ html: errorString });
 }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/*
 //get unique key
+
 function getKey() {
   let now = new Date();
   let year = now.getFullYear().toString();
@@ -327,3 +427,4 @@ function confirmDelete(string) {
   });
 }
 displayTimeLine();
+*/
