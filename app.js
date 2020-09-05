@@ -1,4 +1,68 @@
 'use strict';
+
+function isValidName(name) {
+  if (name == '') {
+    alertError('Product name can not be empty');
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function isValidNumber(number) {
+  if (number === '') {
+    alertError('Amount can not be empty');
+    return false;
+  } else if (isNaN(Number(number))) {
+    alertError('Amount must be a number');
+    return false;
+  } else if (Number(number) < 0) {
+    alertError('Amount can not be negative');
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// popup alert
+function alertError(errorString) {
+  M.toast({ html: errorString });
+}
+
+//local storage setup
+function localSetup() {
+  let data, keys, products;
+  if (localStorage.getItem('data') == null) {
+    localStorage.setItem('data', JSON.stringify({}));
+  } else {
+    data = JSON.parse(localStorage.getItem('data'));
+  }
+
+  if (localStorage.getItem('keys') == null) {
+    localStorage.setItem('keys', JSON.stringify({ 0: [] }));
+  } else {
+    keys = JSON.parse(localStorage.getItem('keys'));
+  }
+  if (localStorage.getItem('products') == null) {
+    localStorage.setItem('products', JSON.stringify({}));
+  } else {
+    products = JSON.parse(localStorage.getItem('products'));
+  }
+
+  return [data, keys, products];
+}
+
+// prompt yes or no for delete
+function confirmDelete(string) {
+  return swal({
+    title: 'Are you sure?',
+    text: string,
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+  });
+}
+
 // nav bar change code
 const navBar = document.querySelectorAll('#navBar li a');
 navBar.forEach((element) =>
@@ -34,6 +98,21 @@ function changeTab(e) {
   }
 }
 
+// delete all data from the local storage
+document.getElementById('delete-data').addEventListener('click', () => {
+  confirmDelete('Once deleted, you will not be able to recover all data!').then(
+    (flag) => {
+      if (flag) {
+        localStorage.clear();
+        localSetup();
+        swal('Local storage cleared successfully', {
+          icon: 'success',
+        });
+      }
+    }
+  );
+});
+
 //event listeners for add new product
 document.getElementById('add-product-icon').addEventListener('click', () => {
   let icon = document.getElementsByClassName('create-product-icon-box')[0];
@@ -58,43 +137,38 @@ document.getElementById('add-product-cancel').addEventListener('click', () => {
 });
 
 document.getElementById('add-product-button').addEventListener('click', () => {
-  let name = document.getElementById('new-product-name').value;
-  let amountString = document.getElementById('new-amount').value;
+  let data, keys, products;
+  let name = document.getElementById('new-product-name').value.toLowerCase();
+  let amountString = document.getElementById('new-amount').value.toLowerCase();
   console.log(name, amountString);
   if (isValidName(name) && isValidNumber(amountString)) {
     let amount = Number(amountString);
     console.log(name, amount);
+    [data, keys, products] = localSetup();
+    console.log(products);
+    if (name in products && amount != products[name]) {
+      confirmDelete(
+        `${name} is already present in product list with price of ₹${products[name]}.Do you want to overwrite the price ₹${amount}`
+      ).then((flag) => {
+        if (flag) {
+          products[name] = amount;
+          localStorage.setItem('products', JSON.stringify(products));
+          swal('Overwritten successfully', {
+            icon: 'success',
+          });
+        }
+      });
+    } else if (name in products && amount == products[name]) {
+      swal(`${name} is already present in the list with price of ₹${amount}`);
+    } else {
+      products[name] = amount;
+      localStorage.setItem('products', JSON.stringify(products));
+      swal(`${name} Added successfully` , {
+        icon: 'success',
+      });
+    }
   }
 });
-
-function isValidName(name) {
-  if (name == '') {
-    alertError('Product name can not be empty');
-    return false;
-  } else {
-    return true;
-  }
-}
-
-function isValidNumber(number) {
-  if (number === '') {
-    alertError('Amount can not be empty');
-    return false;
-  } else if (isNaN(Number(number))) {
-    alertError('Amount must be a number');
-    return false;
-  } else if (Number(number) < 0) {
-    alertError('Amount can not be negative');
-    return false;
-  } else {
-    return true;
-  }
-}
-
-// popup alert
-function alertError(errorString) {
-  M.toast({ html: errorString });
-}
 
 //
 //
@@ -417,14 +491,6 @@ function displayTimeLine() {
   );
 }
 
-function confirmDelete(string) {
-  return swal({
-    title: 'Are you sure?',
-    text: string,
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
-  });
-}
+
 displayTimeLine();
 */
