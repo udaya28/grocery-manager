@@ -144,8 +144,7 @@ document.getElementById('delete-data').addEventListener('click', () => {
     (flag) => {
       if (flag) {
         localStorage.clear();
-        productName = [];
-        
+        productName = []; 
         localSetup();
         autoComplete();
         swal('Local storage cleared successfully', {
