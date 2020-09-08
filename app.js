@@ -272,11 +272,10 @@ function autocomplete(inp, arr) {
   });
 }
 var productName = [];
-
 document.addEventListener('DOMContentLoaded', ()=>{
   let data, keys, products;
   [data, keys, products] = localSetup();
-  autocomplete(document.getElementById("product-name"), productName);
+  autocomplete(document.getElementById("product-name-timeline"), productName);
   for( name in products){
     productName.push(name);
   }
