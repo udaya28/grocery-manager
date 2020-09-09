@@ -465,8 +465,8 @@ function changeCollapsible(e) {
 function displayTimeLine() {
   let data, keys,product;
   [data, keys,product] = localSetup();
-  console.table(data);
-  console.log(keys);
+  // console.table(data);
+  // console.log(keys);
   // console.log(keys[0].length)
   if(keys[0].length > 0){
     document.getElementsByClassName('time-line')[0].style.display = "block";
