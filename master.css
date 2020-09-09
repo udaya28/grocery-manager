@@ -105,3 +105,10 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
     .time-line{
       padding: 15px 10px;
     }
+ 
+    .p-name:first-letter {
+      text-transform: uppercase;
+  }
+  .p-name{
+    margin:0px;
+  }

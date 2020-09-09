@@ -492,7 +492,7 @@ function displayTimeLine() {
     html += `
     <li class='${key}'>
          <div class="collapsible-header">
-             ${name}
+             <p class = "p-name">${name}</p>
              <span class="badge"> <b> ₹ ${total}</b></span>
              <i class="material-icons delete-icon">cancel</i>
          </div>
