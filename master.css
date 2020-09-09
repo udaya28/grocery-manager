@@ -87,3 +87,8 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
   box-shadow: 0 2px 2px 0 rgba(255, 255, 255, 0.14);
   margin-bottom: 0px;
   }
+
+  .collapsible {
+    border-right: 0px solid #ddd;
+    border-left: 0px solid #ddd;
+    }
