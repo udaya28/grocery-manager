@@ -109,6 +109,25 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
     .p-name:first-letter {
       text-transform: uppercase;
   }
-  .p-name{
+  .p-name,.name-p{
     margin:0px;
+  }
+  /* dash board */
+
+.all-products{
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+.name-p{
+  padding:10px;
+  border-bottom:  1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+#dashBoard > div:nth-child(2) {
+  margin-bottom: 0px;
+  }
+
+  .all-products > div:nth-child(1){
+    border-top:  1px solid #ddd;
   }

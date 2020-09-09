@@ -465,8 +465,8 @@ function changeCollapsible(e) {
 function displayTimeLine() {
   let data, keys,product;
   [data, keys,product] = localSetup();
-  console.table(data);
-  console.log(keys);
+  // console.table(data);
+  // console.log(keys);
   // console.log(keys[0].length)
   if(keys[0].length > 0){
     document.getElementsByClassName('time-line')[0].style.display = "block";
@@ -540,111 +540,4 @@ function displayTimeLine() {
   );
 }
 displayTimeLine();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-/*
-
-//add event listener for add product
-document.getElementById('addProduct').addEventListener('click', addProduct);
-document.addEventListener('keypress', function (e) {
-  if (e.key === 'Enter') {
-    addProduct();
-  }
-});
-
-//data declaration
-var keys = {};
-var data = {};
-
-//set and get data from the local storage
-function localSetup() {
-  if (localStorage.getItem('data') == null) {
-    localStorage.setItem('data', JSON.stringify({}));
-  } else {
-    data = JSON.parse(localStorage.getItem('data'));
-  }
-
-  if (localStorage.getItem('keys') == null) {
-    localStorage.setItem('keys', JSON.stringify({ 0: [] }));
-  } else {
-    keys = JSON.parse(localStorage.getItem('keys'));
-  }
-
-  if (keys[0] == undefined || keys[0].length == 0) {
-    document
-      .getElementsByClassName('time-line')[0]
-      .setAttribute('style', 'display : none;');
-    // console.log(document.getElementsByClassName('time-line'));
-  } else {
-    document
-      .getElementsByClassName('time-line')[0]
-      .setAttribute('style', 'display : block;');
-  }
-  return [data, keys];
-}
-
-
-
-
-document.getElementById('delete-data').addEventListener('click', clearAllData);
-
-// delete all data from the local storage
-function clearAllData() {
-  confirmDelete('Once deleted, you will not be able to recover all data!').then(
-    (flag) => {
-      if (flag) {
-        localStorage.clear();
-        localSetup();
-        displayTimeLine();
-        swal('Local storage cleared successfully', {
-          icon: 'success',
-        });
-      }
-    }
-  );
-}
-
-
-
-
-displayTimeLine();
-*/
