@@ -89,6 +89,26 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
   }
 
   .collapsible {
-    border-right: 0px solid #ddd;
-    border-left: 0px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
     }
+
+    .nav-wrapper{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .time-line{
+      padding: 15px 10px;
+    }
+ 
+    .p-name:first-letter {
+      text-transform: uppercase;
+  }
+  .p-name{
+    margin:0px;
+  }
