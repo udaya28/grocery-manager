@@ -81,3 +81,9 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
 #product-name-timelineautocomplete-list > div:hover{
   background-color: #e7e7e7;
 }
+
+.collapsible{
+  -webkit-box-shadow: 0 2px 2px 0 rgba(255, 255, 255, 0.14);
+  box-shadow: 0 2px 2px 0 rgba(255, 255, 255, 0.14);
+  margin-bottom: 0px;
+  }
