@@ -28,7 +28,7 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
 }
 
 .add-product,
-.create-product-form {
+.create-product-form ,.total-products{
   padding: 15px 10px;
   margin-top: 10px;
 }
