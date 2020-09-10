@@ -440,8 +440,8 @@ document.getElementById('addProduct-timeline').addEventListener('click', () => {
 
 // function to give collapsible effect in time line data
 function changeCollapsible(e) {
-  // console.log(e.target.parentElement);
-  // console.log(e.target.parentElement.children[1].style.display)
+  // console.log(e.target.parentElement.nextElementSibling);
+  // console.log(e.target.parentElement.children[1])
   try {
     if (e.target.parentElement.children[1].nodeName == 'DIV') {
       if (
@@ -461,6 +461,32 @@ function changeCollapsible(e) {
     }
   } catch (error) {}
 }
+
+// function to give collapsible effect in all product data
+function changeCollapsible2(e) {
+  // console.log(e.target.parentElement.nextElementSibling);
+  // console.log(e.target.parentElement.nextElementSibling.nodeName)
+  try {
+    if (e.target.parentElement.nextElementSibling.nodeName == 'DIV') {
+      if (
+        e.target.parentElement.nextElementSibling.style.display == '' ||
+        e.target.parentElement.nextElementSibling.style.display == 'block'
+      ) {
+        e.target.parentElement.nextElementSibling.setAttribute(
+          'style',
+          'display : none;'
+        );
+      } else {
+        e.target.parentElement.nextElementSibling.setAttribute(
+          'style',
+          'display : block;'
+        );
+      }
+    }
+  } catch (error) {}
+}
+
+
 
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
