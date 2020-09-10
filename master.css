@@ -135,6 +135,6 @@ body {
   box-sizing: border-box;
   padding: 2rem;
 }
-b .cap:first-letter {
-  text-transform: uppercase;
+.cap {
+  text-transform: capitalize;
 }
