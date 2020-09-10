@@ -335,6 +335,7 @@ document.getElementById('add-product-button').addEventListener('click', () => {
         icon: 'success',
       });
       productName.push(name);
+      displayProducts();
       let n = document.getElementById('new-product-name');
       let a = document.getElementById('new-amount');
       n.value = '';

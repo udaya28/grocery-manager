@@ -120,14 +120,11 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
 }
 .name-p{
   padding:10px;
-  border-bottom:  1px solid #ddd;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
+  border:  1px solid #ddd;
+ 
 }
 #dashBoard > div:nth-child(2) {
   margin-bottom: 0px;
   }
 
-  .all-products > div:nth-child(1){
-    border-top:  1px solid #ddd;
-  }
+  
