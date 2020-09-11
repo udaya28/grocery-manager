@@ -150,6 +150,7 @@ body {
 }
 .all-product:last-child .collapsible-body-2 {
   border-bottom: 1px solid #ddd;
+  border-top: 0px solid #ddd;
 }
 .collapsible-body-2 {
   display: none;
