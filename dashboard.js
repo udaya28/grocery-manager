@@ -9,7 +9,13 @@ function displayProducts() {
     html += `
         <div class="all-product">
         <div class="collapsible-header-2">
-            <p class = "name-p">${p}</p>
+        <div class="row">
+        <p class = "name-p col ">${p}</p>
+        <i class="material-icons col 
+        right info">info_outline</i>
+        <span class="badge col right info"> <b> ₹ ${product[p]}</b></span>
+        </div>
+            
         </div>
         <div class="collapsible-body-2" style="display: none;">
             <p>Product name   :<b class="cap"> ${p}</b></p>

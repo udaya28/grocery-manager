@@ -122,12 +122,19 @@ body {
 }
 .name-p {
   padding: 10px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 #dashBoard > div:nth-child(2) {
   margin-bottom: 0px;
 }
+.collapsible-header-2{
+  border: 1px solid #ddd;
+}
 
+.collapsible-header-2 > .row {
+  margin-bottom: 0px;
+  padding:1rem;
+}
 .collapsible-body-2 {
   display: none;
   border: 1px solid #ddd;
@@ -137,4 +144,8 @@ body {
 }
 .cap,.name-p {
   text-transform: capitalize;
+}
+.info{
+  margin: 0px !important;
+  padding: 0px 6px !important;
 }

@@ -464,26 +464,32 @@ function changeCollapsible(e) {
 
 // function to give collapsible effect in all product data
 function changeCollapsible2(e) {
-  // console.log(e.target.parentElement.nextElementSibling);
-  // console.log(e.target.parentElement.nextElementSibling.nodeName)
+  // console.log(e.target.nodeName);
+  let ele = e.target.parentElement.nextElementSibling;
+  if(e.target.nodeName == "I"){
+    ele = e.target.parentElement.parentElement.nextElementSibling;
+  }
+  // console.log(ele.nodeName)
   try {
-    if (e.target.parentElement.nextElementSibling.nodeName == 'DIV') {
+    if (ele.nodeName == 'DIV') {
       if (
-        e.target.parentElement.nextElementSibling.style.display == '' ||
-        e.target.parentElement.nextElementSibling.style.display == 'block'
+        ele.style.display == '' ||
+        ele.style.display == 'block'
       ) {
-        e.target.parentElement.nextElementSibling.setAttribute(
+        ele.setAttribute(
           'style',
           'display : none;'
         );
       } else {
-        e.target.parentElement.nextElementSibling.setAttribute(
+        ele.setAttribute(
           'style',
           'display : block;'
         );
       }
     }
-  } catch (error) {}
+  } catch (error) {
+    // console.log(error)
+  }
 }
 
 
