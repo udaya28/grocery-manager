@@ -131,17 +131,29 @@ body {
 #dashBoard > div:nth-child(2) {
   margin-bottom: 0px;
 }
-.collapsible-header-2{
-  border: 1px solid #ddd;
+.collapsible-header-2 {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
 }
-
+.all-product:last-child .collapsible-header-2 {
+  border-bottom: 1px solid #ddd;
+}
 .collapsible-header-2 > .row {
   margin-bottom: 0px;
   padding:1rem;
 }
 .collapsible-body-2 {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+.all-product:last-child .collapsible-body-2 {
+  border-bottom: 1px solid #ddd;
+}
+.collapsible-body-2 {
   display: none;
-  border: 1px solid #ddd;
+  
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 2rem;
