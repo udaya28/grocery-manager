@@ -8,21 +8,22 @@ function displayProducts() {
   for (let p in product) {
     html += `
         <div class="all-product">
-        <div class="collapsible-header-2">
-        <div class="row">
-        <p class = "name-p col ">${p}</p>
-        <i class="material-icons col 
-        right info">info_outline</i>
-        <span class="badge col right info"> <b> ₹ ${product[p]}</b></span>
-        </div>
+          <div class="collapsible-header-2">
+            <div class="row">
+              <p class = "name-p col ">${p}</p>
+              <i class="material-icons col 
+              right info">info_outline</i>
+              <span class="badge col right info"> <b> ₹ ${product[p]}</b></span>
+            </div>
             
-        </div>
-        <div class="collapsible-body-2" style="display: none;">
-            <p>Product name   :<b class="cap"> ${p}</b></p>
-            <p>Price per item :<b> ₹${product[p]}</b></p>
-            
-        </div>
-        <div class="edit-product-detail><div>
+          </div>
+          <div class="collapsible-body-2"  
+                style="display: none;">
+                  <p>Product name   :<b class="cap"> ${p}</b></p>
+                  <p>Price per item :<b> ₹${product[p]}</b></p>
+                  
+          </div>
+          
         </div>`;
   }
   document.getElementsByClassName('all-products')[0].innerHTML = html;
