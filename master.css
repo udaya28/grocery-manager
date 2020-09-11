@@ -36,7 +36,7 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
 
 @media screen and (max-width: 600px) {
   .add-product,
-  .create-product {
+  .create-product,.total-products {
     width: 97%;
     /* margin:0px 5px; */
   }
@@ -117,9 +117,13 @@ body {
 /* dash board */
 
 .all-products {
-  margin-left: 40px;
+  margin-left: 0px;
   margin-bottom: 10px;
 }
+
+.row {
+  margin-bottom: 20px;
+  }
 .name-p {
   padding: 10px;
   /* border: 1px solid #ddd; */
