@@ -335,6 +335,7 @@ document.getElementById('add-product-button').addEventListener('click', () => {
         icon: 'success',
       });
       productName.push(name);
+      displayProducts();
       let n = document.getElementById('new-product-name');
       let a = document.getElementById('new-amount');
       n.value = '';
@@ -439,8 +440,8 @@ document.getElementById('addProduct-timeline').addEventListener('click', () => {
 
 // function to give collapsible effect in time line data
 function changeCollapsible(e) {
-  // console.log(e.target.parentElement);
-  // console.log(e.target.parentElement.children[1].style.display)
+  // console.log(e.target.parentElement.nextElementSibling);
+  // console.log(e.target.parentElement.children[1])
   try {
     if (e.target.parentElement.children[1].nodeName == 'DIV') {
       if (
@@ -460,6 +461,38 @@ function changeCollapsible(e) {
     }
   } catch (error) {}
 }
+
+// function to give collapsible effect in all product data
+function changeCollapsible2(e) {
+  // console.log(e.target.nodeName);
+  let ele = e.target.parentElement.nextElementSibling;
+  if(e.target.nodeName == "I"){
+    ele = e.target.parentElement.parentElement.nextElementSibling;
+  }
+  // console.log(ele.nodeName)
+  try {
+    if (ele.nodeName == 'DIV') {
+      if (
+        ele.style.display == '' ||
+        ele.style.display == 'block'
+      ) {
+        ele.setAttribute(
+          'style',
+          'display : none;'
+        );
+      } else {
+        ele.setAttribute(
+          'style',
+          'display : block;'
+        );
+      }
+    }
+  } catch (error) {
+    // console.log(error)
+  }
+}
+
+
 
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
