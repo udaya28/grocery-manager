@@ -20,7 +20,9 @@ function displayProducts() {
         <div class="collapsible-body-2" style="display: none;">
             <p>Product name   :<b class="cap"> ${p}</b></p>
             <p>Price per item :<b> ₹${product[p]}</b></p>
+            
         </div>
+        <div class="edit-product-detail><div>
         </div>`;
   }
   document.getElementsByClassName('all-products')[0].innerHTML = html;
@@ -32,8 +34,8 @@ document.getElementById('search-products').addEventListener('keyup', () => {
     .getElementById('search-products')
     .value.toLowerCase();
   products.forEach((product) => {
-    let productName = product.children[0].childNodes[0].nodeValue;
-    // console.log(searchName,productName)
+    let productName = product.firstElementChild.firstElementChild.textContent.toLowerCase();
+    console.log(product.firstElementChild.firstElementChild.textContent)
     if (productName.includes(searchName)) {
       product.parentElement.style.display = 'block';
     } else {
