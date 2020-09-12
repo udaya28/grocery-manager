@@ -22,10 +22,10 @@ function displayProducts() {
                   <p>Product name   :<b class="cap"> ${p}</b></p>
                   <p>Price per item :<b> ₹${product[p]}</b></p>
                   <div class="row" style="display:block; ">
+                  <button class="btn btn-small waves-effect waves-light light-blue darken-2 edit-product-details col right"      type="submit" name="action" style="display:block; ">edit
+                  </button>
                   <button class="btn btn-small waves-effect waves-light  red lighten-1 delete-product-details col right"       type="submit" name="action" style="display:block; ">delete
                     
-                  </button>
-                  <button class="btn btn-small waves-effect waves-light light-blue darken-2 edit-product-details col right"      type="submit" name="action" style="display:block; ">edit
                   </button>
                   </div>
                   <div class="edit" style="display:none;">
