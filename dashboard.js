@@ -22,6 +22,34 @@ function displayProducts() {
                   <p>Product name   :<b class="cap"> ${p}</b></p>
                   <p>Price per item :<b> ₹${product[p]}</b></p>
                   
+                  <button class=" btn-small waves-effect waves-light light-blue darken-2 edit-product-details"      type="submit" name="action" style="display:block; ">edit
+                    <i class="material-icons right">edit</i>
+                  </button>
+      
+                  <div class="edit" style="display:block;">
+                          <div class="input-field col s12">
+                              <i class="material-icons prefix ">    shopping_cart</i>
+                              <input type="text" id="edit-product-name">
+                              <label for="edit-product-name"     class="">Product Name</label>
+                          </div>
+        
+                      <div class="input-field col s12">
+                          <i class="material-icons prefix"> monetization_on</i>
+                          <input type="text" inputmode="numeric"         id="edit-amount">
+                          <label for="edit-amount">Amount per unit</label>
+                      </div>
+                      <div class="row">
+                           <button class="btn waves-effect waves-light right light-blue darken-2" name="action"
+                             id="edit-product-button">save
+                             <i class="material-icons right">save</i>
+                         </button>
+                         <button class="btn waves-effect waves-light right light-blue darken-2" s name="action"
+                             id="edit-product-cancel">cancel
+                             <i class="material-icons right">cancel</i>
+                         </button>
+                      </div>
+                  </div>
+                  
           </div>
           
         </div>`;
