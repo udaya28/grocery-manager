@@ -21,29 +21,31 @@ function displayProducts() {
                 style="display: none;">
                   <p>Product name   :<b class="cap"> ${p}</b></p>
                   <p>Price per item :<b> ₹${product[p]}</b></p>
-                  
-                  <button class=" btn-small waves-effect waves-light light-blue darken-2 edit-product-details"      type="submit" name="action" style="display:block; ">edit
+                  <div class="row" style="display:block; ">
+                  <button class="btn btn-small waves-effect waves-light  red lighten-1 delete-product-details col right"       type="submit" name="action" style="display:block; ">delete
                     
                   </button>
-      
+                  <button class="btn btn-small waves-effect waves-light light-blue darken-2 edit-product-details col right"      type="submit" name="action" style="display:block; ">edit
+                  </button>
+                  </div>
                   <div class="edit" style="display:none;">
                           <div class="input-field col s12">
                               <i class="material-icons prefix ">    shopping_cart</i>
                               <input type="text" id="edit-product-name">
-                              <label for="edit-product-name"     class="">Product Name</label>
+                              <label for="edit-product-name"     class="">New Product Name</label>
                           </div>
         
                       <div class="input-field col s12">
                           <i class="material-icons prefix"> monetization_on</i>
                           <input type="text" inputmode="numeric"         id="edit-amount">
-                          <label for="edit-amount">Amount per unit</label>
+                          <label for="edit-amount">New Amount Per Unit</label>
                       </div>
                       <div class="row">
-                           <button class="btn waves-effect waves-light right light-blue darken-2 edit-product-button" name="action"
+                           <button class="btn btn-small waves-effect waves-light right light-blue darken-2 edit-product-button" name="action"
                              >save
                              
                          </button>
-                         <button class="btn waves-effect waves-light right light-blue darken-2 edit-product-cancel" s name="action"
+                         <button class="btn btn-small waves-effect waves-light right light-blue darken-2 edit-product-cancel" s name="action"
                              >cancel
                              
                          </button>
@@ -84,12 +86,12 @@ document.querySelectorAll(".edit-product-details").forEach((product)=>{
   
   product.addEventListener('click',(product)=>{
     console.log(product ,product.target)
-    if(product.target.nextElementSibling.style.display == "none"){
-      product.target.nextElementSibling.style.display = "block";
-      product.target.style.display = "none";
+    if(product.target.parentElement.nextElementSibling.style.display == "none"){
+      product.target.parentElement.nextElementSibling.style.display = "block";
+      product.target.parentElement.style.display = "none";
     }else{
-      product.target.nextElementSibling.style.display = "none";
-      product.target.style.display = "block";
+      product.target.parentElement.nextElementSibling.style.display = "none";
+      product.target.parentElement.style.display = "block";
     }
     })
     
