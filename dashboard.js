@@ -22,6 +22,34 @@ function displayProducts() {
                   <p>Product name   :<b class="cap"> ${p}</b></p>
                   <p>Price per item :<b> ₹${product[p]}</b></p>
                   
+                  <button class=" btn-small waves-effect waves-light light-blue darken-2 edit-product-details"      type="submit" name="action" style="display:block; ">edit
+                    
+                  </button>
+      
+                  <div class="edit" style="display:none;">
+                          <div class="input-field col s12">
+                              <i class="material-icons prefix ">    shopping_cart</i>
+                              <input type="text" id="edit-product-name">
+                              <label for="edit-product-name"     class="">Product Name</label>
+                          </div>
+        
+                      <div class="input-field col s12">
+                          <i class="material-icons prefix"> monetization_on</i>
+                          <input type="text" inputmode="numeric"         id="edit-amount">
+                          <label for="edit-amount">Amount per unit</label>
+                      </div>
+                      <div class="row">
+                           <button class="btn waves-effect waves-light right light-blue darken-2 edit-product-button" name="action"
+                             >save
+                             
+                         </button>
+                         <button class="btn waves-effect waves-light right light-blue darken-2 edit-product-cancel" s name="action"
+                             >cancel
+                             
+                         </button>
+                      </div>
+                  </div>
+                  
           </div>
           
         </div>`;
@@ -51,4 +79,30 @@ collapsibleHeader2.forEach((ele) => {
   ele.addEventListener('click', (e) => changeCollapsible2(e));
   
 });
+
+document.querySelectorAll(".edit-product-details").forEach((product)=>{
+  
+  product.addEventListener('click',(product)=>{
+    console.log(product ,product.target)
+    if(product.target.nextElementSibling.style.display == "none"){
+      product.target.nextElementSibling.style.display = "block";
+      product.target.style.display = "none";
+    }else{
+      product.target.nextElementSibling.style.display = "none";
+      product.target.style.display = "block";
+    }
+    })
+    
+})
+
+document.querySelectorAll(".edit-product-cancel").forEach((btn)=>{
+  btn.addEventListener('click',(ele)=>{
+console.log(ele.target.parentElement.parentElement);
+ele.target.parentElement.parentElement.previousElementSibling.style.display = "block";
+ele.target.parentElement.parentElement.style.display = "none";
+  })
+}
+  
+    
+)
 
