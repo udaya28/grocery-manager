@@ -15,7 +15,7 @@ function displayProducts() {
               right info">info_outline</i>
               <span class="badge col right info"> <b> ₹ ${product[p]}</b></span>
             </div>
-            
+
           </div>
           <div class="collapsible-body-2"  
                 style="display: none;">
@@ -31,14 +31,14 @@ function displayProducts() {
                   <div class="edit" style="display:none;">
                           <div class="input-field col s12">
                               <i class="material-icons prefix ">    shopping_cart</i>
-                              <input type="text" id="edit-product-name">
-                              <label for="edit-product-name"     class="">New Product Name</label>
+                              <input type="text" id="edit-product-name-${p}">
+                              <label for="edit-product-name-${p}"     class="">New Product Name</label>
                           </div>
         
                       <div class="input-field col s12">
                           <i class="material-icons prefix"> monetization_on</i>
-                          <input type="text" inputmode="numeric"         id="edit-amount">
-                          <label for="edit-amount">New Amount Per Unit</label>
+                          <input type="text" inputmode="numeric"         id="edit-amount-${p}">
+                          <label for="edit-amount-${p}">New Amount Per Unit</label>
                       </div>
                       <div class="row">
                            <button class="btn btn-small waves-effect waves-light right light-blue darken-2 edit-product-button" name="action"
