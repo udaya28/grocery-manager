@@ -4,6 +4,7 @@ function displayProducts() {
   [data, keys, product] = localSetup();
   console.table(data);
   console.log(product);
+  console.log(keys)
   let html = '';
   for (let p in product) {
     html += `
@@ -15,7 +16,7 @@ function displayProducts() {
               right info">info_outline</i>
               <span class="badge col right info"> <b> ₹ ${product[p]}</b></span>
             </div>
-            
+
           </div>
           <div class="collapsible-body-2"  
                 style="display: none;">
@@ -31,14 +32,14 @@ function displayProducts() {
                   <div class="edit" style="display:none;">
                           <div class="input-field col s12">
                               <i class="material-icons prefix ">    shopping_cart</i>
-                              <input type="text" id="edit-product-name">
-                              <label for="edit-product-name"     class="">New Product Name</label>
+                              <input type="text" id="edit-product-name-${p}">
+                              <label for="edit-product-name-${p}"     class="">New Product Name</label>
                           </div>
         
                       <div class="input-field col s12">
                           <i class="material-icons prefix"> monetization_on</i>
-                          <input type="text" inputmode="numeric"         id="edit-amount">
-                          <label for="edit-amount">New Amount Per Unit</label>
+                          <input type="text" inputmode="numeric"         id="edit-amount-${p}">
+                          <label for="edit-amount-${p}">New Amount Per Unit</label>
                       </div>
                       <div class="row">
                            <button class="btn btn-small waves-effect waves-light right light-blue darken-2 edit-product-button" name="action"
@@ -74,8 +75,8 @@ document.getElementById('search-products').addEventListener('keyup', () => {
     }
   });
 });
-
-let collapsibleHeader2 = document.querySelectorAll('.collapsible-header-2');
+function event1() {
+  let collapsibleHeader2 = document.querySelectorAll('.collapsible-header-2');
 
 collapsibleHeader2.forEach((ele) => {
   ele.addEventListener('click', (e) => changeCollapsible2(e));
@@ -85,7 +86,7 @@ collapsibleHeader2.forEach((ele) => {
 document.querySelectorAll(".edit-product-details").forEach((product)=>{
   
   product.addEventListener('click',(product)=>{
-    console.log(product ,product.target)
+    // console.log(product ,product.target)
     if(product.target.parentElement.nextElementSibling.style.display == "none"){
       product.target.parentElement.nextElementSibling.style.display = "block";
       product.target.parentElement.style.display = "none";
@@ -99,12 +100,50 @@ document.querySelectorAll(".edit-product-details").forEach((product)=>{
 
 document.querySelectorAll(".edit-product-cancel").forEach((btn)=>{
   btn.addEventListener('click',(ele)=>{
-console.log(ele.target.parentElement.parentElement);
+// console.log(ele.target.parentElement.parentElement);
 ele.target.parentElement.parentElement.previousElementSibling.style.display = "block";
 ele.target.parentElement.parentElement.style.display = "none";
   })
 }
-  
-    
 )
+}
 
+//delete product form product list
+document.querySelectorAll(".delete-product-details").forEach((ele)=>{
+  ele.addEventListener('click',(e)=>{
+    
+
+    deleteProduct(e.target.parentElement.parentElement.firstElementChild.firstElementChild.textContent);
+
+  })
+});
+function deleteProduct(na){
+  let n = na;
+    let data, keys, products;
+  [data, keys, products] = localSetup();
+    console.log(products)
+    console.log(n)
+    
+     console.log(products[n])
+
+
+  confirmDelete(
+        'Once deleted, your all product details related to this product will be deleted permanently  '
+      ).then((flag) => {
+        if (flag) {
+          // delete prdoct[name]
+          // localStorage.setItem('data', JSON.stringify(data));
+          // localStorage.setItem('keys', JSON.stringify(keys));
+     
+          swal('Product has been deleted!', {
+            icon: 'success',
+          });
+        }
+      });
+
+}
+
+
+
+
+event1();
