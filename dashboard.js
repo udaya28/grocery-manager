@@ -74,8 +74,8 @@ document.getElementById('search-products').addEventListener('keyup', () => {
     }
   });
 });
-
-let collapsibleHeader2 = document.querySelectorAll('.collapsible-header-2');
+function event1() {
+  let collapsibleHeader2 = document.querySelectorAll('.collapsible-header-2');
 
 collapsibleHeader2.forEach((ele) => {
   ele.addEventListener('click', (e) => changeCollapsible2(e));
@@ -108,3 +108,6 @@ ele.target.parentElement.parentElement.style.display = "none";
     
 )
 
+
+}
+event1();

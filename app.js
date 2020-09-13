@@ -336,6 +336,7 @@ document.getElementById('add-product-button').addEventListener('click', () => {
       });
       productName.push(name);
       displayProducts();
+      event1();
       let n = document.getElementById('new-product-name');
       let a = document.getElementById('new-amount');
       n.value = '';
