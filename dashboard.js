@@ -4,6 +4,7 @@ function displayProducts() {
   [data, keys, product] = localSetup();
   console.table(data);
   console.log(product);
+  console.log(keys)
   let html = '';
   for (let p in product) {
     html += `
@@ -85,7 +86,7 @@ collapsibleHeader2.forEach((ele) => {
 document.querySelectorAll(".edit-product-details").forEach((product)=>{
   
   product.addEventListener('click',(product)=>{
-    console.log(product ,product.target)
+    // console.log(product ,product.target)
     if(product.target.parentElement.nextElementSibling.style.display == "none"){
       product.target.parentElement.nextElementSibling.style.display = "block";
       product.target.parentElement.style.display = "none";
@@ -99,15 +100,50 @@ document.querySelectorAll(".edit-product-details").forEach((product)=>{
 
 document.querySelectorAll(".edit-product-cancel").forEach((btn)=>{
   btn.addEventListener('click',(ele)=>{
-console.log(ele.target.parentElement.parentElement);
+// console.log(ele.target.parentElement.parentElement);
 ele.target.parentElement.parentElement.previousElementSibling.style.display = "block";
 ele.target.parentElement.parentElement.style.display = "none";
   })
 }
-  
-    
 )
+}
 
+//delete product form product list
+document.querySelectorAll(".delete-product-details").forEach((ele)=>{
+  ele.addEventListener('click',(e)=>{
+    
+
+    deleteProduct(e.target.parentElement.parentElement.firstElementChild.firstElementChild.textContent);
+
+  })
+});
+function deleteProduct(na){
+  let n = na;
+    let data, keys, products;
+  [data, keys, products] = localSetup();
+    console.log(products)
+    console.log(n)
+    
+     console.log(products[n])
+
+
+  confirmDelete(
+        'Once deleted, your all product details related to this product will be deleted permanently  '
+      ).then((flag) => {
+        if (flag) {
+          // delete prdoct[name]
+          // localStorage.setItem('data', JSON.stringify(data));
+          // localStorage.setItem('keys', JSON.stringify(keys));
+     
+          swal('Product has been deleted!', {
+            icon: 'success',
+          });
+        }
+      });
 
 }
+
+
+
+
 event1();
