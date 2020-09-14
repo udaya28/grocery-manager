@@ -525,7 +525,7 @@ function displayTimeLine() {
     let year = time.getFullYear();
     let timing = time.toString().split(' ')[4];
     let day = time.toString().split(' ')[0];
-    if(product.name in products){
+    
       html += `
     <li class='${key}'>
          <div class="collapsible-header">
@@ -542,7 +542,7 @@ function displayTimeLine() {
              <p>Time           :<b> ${timing}</b><p>
          </div>
     </li>`;
-    }
+    
     
   });
 
