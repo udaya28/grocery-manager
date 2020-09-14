@@ -107,10 +107,12 @@ var productName = [];
 function autoComplete() {
   let data, keys, products;
   [data, keys, products] = localSetup();
-  autocomplete(document.getElementById('product-name-timeline'), productName);
+  productName = []
   for (name in products) {
     productName.push(name);
   }
+  autocomplete(document.getElementById('product-name-timeline'), productName);
+ 
 }
 document.addEventListener('DOMContentLoaded', autoComplete);
 
@@ -434,7 +436,7 @@ function addProduct() {
 }
 
 document.getElementById('addProduct-timeline').addEventListener('click', () => {
-  console.log('hello');
+  // console.log('hello');
   addProduct();
 });
 
@@ -497,8 +499,8 @@ function changeCollapsible2(e) {
 
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
-  let data, keys,product;
-  [data, keys,product] = localSetup();
+  let data, keys,products;
+  [data, keys,products] = localSetup();
   // console.table(data);
   // console.log(keys);
   // console.log(keys[0].length)
@@ -511,6 +513,7 @@ function displayTimeLine() {
   let html = '';
   keys[0].forEach((key) => {
     // console.log(data[key]);
+
     let product = data[key];
     let name = product.name;
     let amount = product.amount;
@@ -522,8 +525,8 @@ function displayTimeLine() {
     let year = time.getFullYear();
     let timing = time.toString().split(' ')[4];
     let day = time.toString().split(' ')[0];
-
-    html += `
+    
+      html += `
     <li class='${key}'>
          <div class="collapsible-header">
              <p class = "p-name">${name}</p>
@@ -539,6 +542,8 @@ function displayTimeLine() {
              <p>Time           :<b> ${timing}</b><p>
          </div>
     </li>`;
+    
+    
   });
 
   collapsible.innerHTML = html;
