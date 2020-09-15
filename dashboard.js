@@ -156,7 +156,7 @@ function deleteProduct(na) {
           localStorage.setItem('data', JSON.stringify(data));
           localStorage.setItem('keys', JSON.stringify(keys));
       
-      [data, keys, products] = localSetup();
+      // [data, keys, products] = localSetup();
       // console.log(products);
       // console.log(keys);
       // console.table(data);
@@ -177,6 +177,27 @@ function deleteProduct(na) {
 
 
 function editProductDetail(e,pName){
-  console.log(e);
   console.log(pName);
+  let newAmount = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.children[1].value.toLowerCase();
+  console.log(newAmount);
+  let newName = e.target.parentElement.parentElement.firstElementChild.children[1].value.toLowerCase();
+  console.log(newName);
+  if(isValidName(newName) && isValidNumber(newAmount,"Amount")  ){
+    if((productName.indexOf(newName) == -1) || newName == pName){
+      console.log("valid");
+      confirmDelete(
+        'Once changed all the data related to this product will be changed accordingly'
+      ).then((flag) => {
+        if (flag) {
+            console.log("yes")
+            }
+          });
+    }else{
+      swal(`${newName} is already found in the product list and can not be rename the same`, {
+        icon: 'warning',
+      });
+    }
+    
+  }
+  
 }
