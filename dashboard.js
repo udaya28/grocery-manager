@@ -128,8 +128,11 @@ function deleteProduct(na) {
       let [data, keys, products] = localSetup();
 
       console.log(products[na]);
-
-      keys[0].forEach((key) => {
+      let x = []
+       x = [...keys[0]]
+      x.forEach((key) => {
+        console.log(data[key].name == na)
+        console.log(key)
         if (data[key].name == na) {
           const index = keys[0].indexOf(key);
           if (index > -1) {
@@ -140,6 +143,10 @@ function deleteProduct(na) {
           
         }
       });
+      // console.table(data);
+      // console.log(keys);
+      // console.log(products);
+      
       localStorage.setItem('products', JSON.stringify(products));
           localStorage.setItem('data', JSON.stringify(data));
           localStorage.setItem('keys', JSON.stringify(keys));
@@ -152,6 +159,7 @@ function deleteProduct(na) {
       displayProducts();
       displayTimeLine();
       autoComplete();
+      event1();
     
     
       swal('Product has been deleted!', {
