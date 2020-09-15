@@ -2,9 +2,9 @@
 function displayProducts() {
   let data, keys, product;
   [data, keys, product] = localSetup();
-  console.table(data);
-  console.log(product);
-  console.log(keys);
+  // console.table(data);
+  // console.log(product);
+  // console.log(keys);
   let html = '';
   for (let p in product) {
     
@@ -116,6 +116,12 @@ function event1() {
       deleteProduct(name);
     });
   });
+  document.querySelectorAll('.edit-product-button').forEach((ele)=>{
+    ele.addEventListener('click',(e)=>{
+      
+      editProductDetail(e,e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.innerText.toLowerCase());
+    })
+  })
 }
 
 event1();
@@ -130,6 +136,7 @@ function deleteProduct(na) {
       console.log(products[na]);
       let x = []
        x = [...keys[0]]
+       delete products[na];
       x.forEach((key) => {
         console.log(data[key].name == na)
         console.log(key)
@@ -138,23 +145,21 @@ function deleteProduct(na) {
           if (index > -1) {
             keys[0].splice(index, 1);
           }
-          delete products[na];
+          
           delete data[key];
           
         }
       });
-      // console.table(data);
-      // console.log(keys);
-      // console.log(products);
+   
       
       localStorage.setItem('products', JSON.stringify(products));
           localStorage.setItem('data', JSON.stringify(data));
           localStorage.setItem('keys', JSON.stringify(keys));
       
       [data, keys, products] = localSetup();
-      console.log(products);
-      console.log(keys);
-      console.table(data);
+      // console.log(products);
+      // console.log(keys);
+      // console.table(data);
       
       displayProducts();
       displayTimeLine();
@@ -169,11 +174,9 @@ function deleteProduct(na) {
   });
 }
 
-function getAllIndexes(arr, val) {
-  var indexes = [],
-    i = -1;
-  while ((i = arr.indexOf(val, i + 1)) != -1) {
-    indexes.push(i);
-  }
-  return indexes;
+
+
+function editProductDetail(e,pName){
+  console.log(e);
+  console.log(pName);
 }
