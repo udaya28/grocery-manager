@@ -2,9 +2,6 @@
 function displayProducts() {
   let data, keys, product;
   [data, keys, product] = localSetup();
-  // console.table(data);
-  // console.log(product);
-  // console.log(keys);
   let html = '';
   for (let p in product) {
     html += `
@@ -154,12 +151,6 @@ function deleteProduct(na) {
       localStorage.setItem('products', JSON.stringify(products));
       localStorage.setItem('data', JSON.stringify(data));
       localStorage.setItem('keys', JSON.stringify(keys));
-
-      // [data, keys, products] = localSetup();
-      // console.log(products);
-      // console.log(keys);
-      // console.table(data);
-
       displayProducts();
       displayTimeLine();
       autoComplete();
@@ -175,9 +166,7 @@ function deleteProduct(na) {
 function editProductDetail(e, pName) {
   // console.log(pName);
   let newAmount = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.children[1].value.toLowerCase();
-  // console.log(newAmount);
   let newName = e.target.parentElement.parentElement.firstElementChild.children[1].value.toLowerCase();
-  // console.log(newName);
   if (isValidName(newName) && isValidNumber(newAmount, 'Amount')) {
     if (productName.indexOf(newName) == -1 || newName == pName) {
       confirmDelete(
@@ -211,14 +200,14 @@ function changeDetails(pName, newName, newAmount) {
     swal('Product details has been changed successfully', {
       icon: 'success',
     });
-  } else if(pName != newName && pAmount == newAmount){
-    changeName(pName,newName);
+  } else if (pName != newName && pAmount == newAmount) {
+    changeName(pName, newName);
     swal('Product details has been changed successfully', {
       icon: 'success',
     });
-  } else if(pName != newName && pAmount != newAmount){
+  } else if (pName != newName && pAmount != newAmount) {
     changeAmount(pName, newAmount);
-    changeName(pName,newName);
+    changeName(pName, newName);
     swal('Product details has been changed successfully', {
       icon: 'success',
     });
@@ -228,48 +217,37 @@ function changeDetails(pName, newName, newAmount) {
 function changeAmount(pName, newAmount) {
   let data, keys, products;
   [data, keys, products] = localSetup();
-  // console.log(products)
   products[pName] = newAmount;
-  // console.log(products);
   keys[0].forEach((key) => {
     if (data[key].name == pName) {
       data[key].amount = newAmount;
       data[key].total = newAmount * data[key].count;
-      console.log(data[key]);
     }
     localStorage.setItem('products', JSON.stringify(products));
     localStorage.setItem('data', JSON.stringify(data));
-   
 
     displayProducts();
     displayTimeLine();
     autoComplete();
     event1();
-
-    
   });
 }
 
-
-function changeName(pName,newName) {
+function changeName(pName, newName) {
   let data, keys, products;
   [data, keys, products] = localSetup();
   products[newName] = products[pName];
   delete products[pName];
-  console.log(products);
   keys[0].forEach((key) => {
     if (data[key].name == pName) {
       data[key].name = newName;
-      console.log(data[key]);
     }
   });
   localStorage.setItem('products', JSON.stringify(products));
-    localStorage.setItem('data', JSON.stringify(data));
-    
+  localStorage.setItem('data', JSON.stringify(data));
 
-    displayProducts();
-    displayTimeLine();
-    autoComplete();
-    event1();
-
+  displayProducts();
+  displayTimeLine();
+  autoComplete();
+  event1();
 }
