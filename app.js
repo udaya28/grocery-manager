@@ -361,7 +361,7 @@ function getUserData() {
   let count = document.getElementById('count-timeline').value;
   let flag ,flag1 = false;
 
-  console.log(productName, amount, count);
+  // console.log(productName, amount, count);
   
   if (productName === '' ) {
     alertError('Product Name can not be Empty');

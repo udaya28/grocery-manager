@@ -7,7 +7,6 @@ function displayProducts() {
   // console.log(keys);
   let html = '';
   for (let p in product) {
-    
     html += `
         <div class="all-product">
           <div class="collapsible-header-2">
@@ -116,12 +115,14 @@ function event1() {
       deleteProduct(name);
     });
   });
-  document.querySelectorAll('.edit-product-button').forEach((ele)=>{
-    ele.addEventListener('click',(e)=>{
-      
-      editProductDetail(e,e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.innerText.toLowerCase());
-    })
-  })
+  document.querySelectorAll('.edit-product-button').forEach((ele) => {
+    ele.addEventListener('click', (e) => {
+      editProductDetail(
+        e,
+        e.target.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.innerText.toLowerCase()
+      );
+    });
+  });
 }
 
 event1();
@@ -133,40 +134,37 @@ function deleteProduct(na) {
     if (flag) {
       let [data, keys, products] = localSetup();
 
-      console.log(products[na]);
-      let x = []
-       x = [...keys[0]]
-       delete products[na];
+      // console.log(products[na]);
+      let x = [];
+      x = [...keys[0]];
+      delete products[na];
       x.forEach((key) => {
-        console.log(data[key].name == na)
-        console.log(key)
+        // console.log(data[key].name == na)
+        // console.log(key)
         if (data[key].name == na) {
           const index = keys[0].indexOf(key);
           if (index > -1) {
             keys[0].splice(index, 1);
           }
-          
+
           delete data[key];
-          
         }
       });
-   
-      
+
       localStorage.setItem('products', JSON.stringify(products));
-          localStorage.setItem('data', JSON.stringify(data));
-          localStorage.setItem('keys', JSON.stringify(keys));
-      
+      localStorage.setItem('data', JSON.stringify(data));
+      localStorage.setItem('keys', JSON.stringify(keys));
+
       // [data, keys, products] = localSetup();
       // console.log(products);
       // console.log(keys);
       // console.table(data);
-      
+
       displayProducts();
       displayTimeLine();
       autoComplete();
       event1();
-    
-    
+
       swal('Product has been deleted!', {
         icon: 'success',
       });
@@ -174,30 +172,104 @@ function deleteProduct(na) {
   });
 }
 
-
-
-function editProductDetail(e,pName){
-  console.log(pName);
+function editProductDetail(e, pName) {
+  // console.log(pName);
   let newAmount = e.target.parentElement.parentElement.firstElementChild.nextElementSibling.children[1].value.toLowerCase();
-  console.log(newAmount);
+  // console.log(newAmount);
   let newName = e.target.parentElement.parentElement.firstElementChild.children[1].value.toLowerCase();
-  console.log(newName);
-  if(isValidName(newName) && isValidNumber(newAmount,"Amount")  ){
-    if((productName.indexOf(newName) == -1) || newName == pName){
-      console.log("valid");
+  // console.log(newName);
+  if (isValidName(newName) && isValidNumber(newAmount, 'Amount')) {
+    if (productName.indexOf(newName) == -1 || newName == pName) {
       confirmDelete(
         'Once changed all the data related to this product will be changed accordingly'
       ).then((flag) => {
         if (flag) {
-            console.log("yes")
-            }
-          });
-    }else{
-      swal(`${newName} is already found in the product list and can not be rename the same`, {
-        icon: 'warning',
+          changeDetails(pName, newName, newAmount);
+        }
       });
+    } else {
+      swal(
+        `${newName} is already found in the product list and can not be rename the same`,
+        {
+          icon: 'warning',
+        }
+      );
     }
-    
   }
-  
+}
+
+function changeDetails(pName, newName, newAmount) {
+  let data, keys, products;
+  [data, keys, products] = localSetup();
+  let pAmount = products[pName];
+  newAmount = +newAmount;
+  console.log(pName, pAmount, newName, newAmount);
+  if (pName == newName && pAmount == newAmount) {
+    alertError('The name and amount are same as previous');
+  } else if (pName == newName && pAmount != newAmount) {
+    changeAmount(pName, newAmount);
+    swal('Product details has been changed successfully', {
+      icon: 'success',
+    });
+  } else if(pName != newName && pAmount == newAmount){
+    changeName(pName,newName);
+    swal('Product details has been changed successfully', {
+      icon: 'success',
+    });
+  } else if(pName != newName && pAmount != newAmount){
+    changeAmount(pName, newAmount);
+    changeName(pName,newName);
+    swal('Product details has been changed successfully', {
+      icon: 'success',
+    });
+  }
+}
+
+function changeAmount(pName, newAmount) {
+  let data, keys, products;
+  [data, keys, products] = localSetup();
+  // console.log(products)
+  products[pName] = newAmount;
+  // console.log(products);
+  keys[0].forEach((key) => {
+    if (data[key].name == pName) {
+      data[key].amount = newAmount;
+      data[key].total = newAmount * data[key].count;
+      console.log(data[key]);
+    }
+    localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem('data', JSON.stringify(data));
+   
+
+    displayProducts();
+    displayTimeLine();
+    autoComplete();
+    event1();
+
+    
+  });
+}
+
+
+function changeName(pName,newName) {
+  let data, keys, products;
+  [data, keys, products] = localSetup();
+  products[newName] = products[pName];
+  delete products[pName];
+  console.log(products);
+  keys[0].forEach((key) => {
+    if (data[key].name == pName) {
+      data[key].name = newName;
+      console.log(data[key]);
+    }
+  });
+  localStorage.setItem('products', JSON.stringify(products));
+    localStorage.setItem('data', JSON.stringify(data));
+    
+
+    displayProducts();
+    displayTimeLine();
+    autoComplete();
+    event1();
+
 }
