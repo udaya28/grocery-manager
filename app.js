@@ -372,7 +372,7 @@ function getUserData() {
     flag1 = true;
   }
   if(amount === undefined){
-    swal(`${name} is not found in the product list. To add item to time line you should add to the product list first`, {
+    swal(`${productName} is not found in the product list. To add item to time line you should add to the product list first`, {
       icon: 'warning',
     });
     flag = false;
