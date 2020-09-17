@@ -186,6 +186,7 @@ function editProductDetail(e, pName) {
       );
     }
   }
+  reloadChart();
 }
 
 function changeDetails(pName, newName, newAmount) {
@@ -213,6 +214,7 @@ function changeDetails(pName, newName, newAmount) {
       icon: 'success',
     });
   }
+  reloadChart();
 }
 
 function changeAmount(pName, newAmount) {
@@ -230,7 +232,7 @@ function changeAmount(pName, newAmount) {
     displayProducts();
     displayTimeLine();
     autoComplete();
-    reloadChart();
+    // reloadChart();
     event1();
   });
 }
@@ -251,7 +253,7 @@ function changeName(pName, newName) {
   displayProducts();
   displayTimeLine();
   autoComplete();
-  reloadChart();
+  // reloadChart();
   event1();
 
 }
