@@ -166,6 +166,7 @@ function localSetup() {
     products = JSON.parse(localStorage.getItem('products'));
   }
   
+  
   return [data, keys, products];
 }
 
@@ -338,6 +339,7 @@ document.getElementById('add-product-button').addEventListener('click', () => {
       });
       productName.push(name);
       displayProducts();
+      reloadChart();
       event1();
       let n = document.getElementById('new-product-name');
       let a = document.getElementById('new-amount');
@@ -432,6 +434,7 @@ function addProduct() {
     alertError('Item added successfully');
 
     displayTimeLine();
+    reloadChart();
   }
 }
 
@@ -579,4 +582,55 @@ function displayTimeLine() {
   );
 }
 displayTimeLine();
+reloadChart();
+
+
+
+
+
+
+
+function reloadChart() {
+let ctx = document.getElementById('myChart').getContext('2d');
+let data, keys, products;
+[data, keys, products] = localSetup();
+let productArr = []
+let priceArr  = []
+for (const product in products) {
+ productArr.push(product)
+ priceArr.push(products[product])
+}
+console.log(priceArr)
+console.log(productArr)
+
+
+let chart = new Chart(ctx, {
+  // The type of chart we want to create
+  type: 'bar',
+
+  // The data for our dataset
+  data: {
+      labels: productArr,
+      datasets: [{
+          label: 'Price',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: priceArr
+      }]
+  },
+
+  // Configuration options go here
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
+});
+
+  
+}
 
