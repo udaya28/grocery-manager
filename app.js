@@ -606,8 +606,8 @@ function reloadChart() {
       datasets: [
         {
           label: 'Price',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgb(2,119,189)',
+          borderColor: 'rgb(2,119,189)',
           data: priceArr,
         },
       ],
@@ -657,8 +657,8 @@ function reloadChart() {
       datasets: [
         {
           label: 'Price',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgb(2,119,189)',
+          borderColor: 'rgb(2,119,189)',
           data: totalPrice,
         },
       ],
