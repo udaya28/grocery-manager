@@ -591,7 +591,14 @@ reloadChart();
 
 
 function reloadChart() {
+// console.log(document.getElementsByClassName("chart-1"))
+  document.getElementsByClassName("chart-1")[0].removeChild(document.getElementById('myChart'));
+  let can = document.createElement("canvas");
+  can.setAttribute("id","myChart")
+ 
+  document.getElementsByClassName("chart-1")[0].appendChild(can);
 let ctx = document.getElementById('myChart').getContext('2d');
+
 let data, keys, products;
 [data, keys, products] = localSetup();
 let productArr = []

@@ -36,7 +36,7 @@ input[type='number']:not(.browser-default):focus:not([readonly]) + label {
 
 @media screen and (max-width: 600px) {
   .add-product,
-  .create-product,.total-products {
+  .create-product,.total-products ,.charts{
     width: 97%;
     /* margin:0px 5px; */
   }
@@ -180,4 +180,6 @@ body {
 }
 .charts{
   margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
 }

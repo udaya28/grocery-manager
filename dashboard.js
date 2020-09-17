@@ -154,6 +154,7 @@ function deleteProduct(na) {
       displayProducts();
       displayTimeLine();
       autoComplete();
+      reloadChart();
       event1();
 
       swal('Product has been deleted!', {
@@ -229,6 +230,7 @@ function changeAmount(pName, newAmount) {
     displayProducts();
     displayTimeLine();
     autoComplete();
+    reloadChart();
     event1();
   });
 }
@@ -249,5 +251,7 @@ function changeName(pName, newName) {
   displayProducts();
   displayTimeLine();
   autoComplete();
+  reloadChart();
   event1();
+
 }
