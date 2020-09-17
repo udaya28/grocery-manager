@@ -107,15 +107,13 @@ var productName = [];
 function autoComplete() {
   let data, keys, products;
   [data, keys, products] = localSetup();
-  productName = []
+  productName = [];
   for (name in products) {
     productName.push(name);
   }
   autocomplete(document.getElementById('product-name-timeline'), productName);
- 
 }
 document.addEventListener('DOMContentLoaded', autoComplete);
-
 
 function isValidName(name) {
   if (name == '') {
@@ -126,7 +124,7 @@ function isValidName(name) {
   }
 }
 
-function isValidNumber(number,str) {
+function isValidNumber(number, str) {
   if (number === '') {
     alertError(`${str} can not be empty`);
     return false;
@@ -165,8 +163,7 @@ function localSetup() {
   } else {
     products = JSON.parse(localStorage.getItem('products'));
   }
-  
-  
+
   return [data, keys, products];
 }
 
@@ -263,7 +260,7 @@ document.getElementById('delete-data').addEventListener('click', () => {
       if (flag) {
         localStorage.clear();
         productName = [];
-       
+
         localSetup();
         displayTimeLine();
         autoComplete();
@@ -273,7 +270,6 @@ document.getElementById('delete-data').addEventListener('click', () => {
       }
     }
   );
-  
 });
 
 //event listeners for add new product
@@ -304,7 +300,7 @@ document.getElementById('add-product-button').addEventListener('click', () => {
   let name = document.getElementById('new-product-name').value.toLowerCase();
   let amountString = document.getElementById('new-amount').value.toLowerCase();
   console.log(name, amountString);
-  if (isValidName(name) && isValidNumber(amountString , "Amount")) {
+  if (isValidName(name) && isValidNumber(amountString, 'Amount')) {
     let amount = Number(amountString);
     console.log(name, amount);
     [data, keys, products] = localSetup();
@@ -353,42 +349,50 @@ document.getElementById('add-product-button').addEventListener('click', () => {
   }
 });
 
-
 //get data from the form
 function getUserData() {
-  let productName = document.getElementById('product-name-timeline').value.toLowerCase();
+  let productName = document
+    .getElementById('product-name-timeline')
+    .value.toLowerCase();
   let data, keys, products, amount;
   [data, keys, products] = localSetup();
-    amount = products[productName];
+  amount = products[productName];
   let count = document.getElementById('count-timeline').value;
-  let flag ,flag1 = false;
+  let flag,
+    flag1 = false;
 
   // console.log(productName, amount, count);
-  
-  if (productName === '' ) {
+
+  if (productName === '') {
     alertError('Product Name can not be Empty');
     flag = false;
   }
-  if(isValidNumber(count,"Count")){
+  if (isValidNumber(count, 'Count')) {
     flag = true;
     flag1 = true;
   }
-  if(amount === undefined){
-    swal(`${productName} is not found in the product list. To add item to time line you should add to the product list first`, {
-      icon: 'warning',
-    });
+  if (amount === undefined) {
+    swal(
+      `${productName} is not found in the product list. To add item to time line you should add to the product list first`,
+      {
+        icon: 'warning',
+      }
+    );
     flag = false;
   }
 
-  if (productName === '' || count === '' || count <= 0 || amount === undefined ) {
+  if (
+    productName === '' ||
+    count === '' ||
+    count <= 0 ||
+    amount === undefined
+  ) {
     flag = false && flag1;
   } else {
     flag = true && flag1;
   }
 
-
   if (flag) {
-    
     document.getElementById('product-name-timeline').value = '';
     document.getElementById('count-timeline').value = '';
     document
@@ -443,7 +447,6 @@ document.getElementById('addProduct-timeline').addEventListener('click', () => {
   addProduct();
 });
 
-
 // function to give collapsible effect in time line data
 function changeCollapsible(e) {
   // console.log(e.target.parentElement.nextElementSibling);
@@ -472,25 +475,16 @@ function changeCollapsible(e) {
 function changeCollapsible2(e) {
   // console.log(e.target.nodeName);
   let ele = e.target.parentElement.nextElementSibling;
-  if(e.target.nodeName == "I"){
+  if (e.target.nodeName == 'I') {
     ele = e.target.parentElement.parentElement.nextElementSibling;
   }
   // console.log(ele.nodeName)
   try {
     if (ele.nodeName == 'DIV') {
-      if (
-        ele.style.display == '' ||
-        ele.style.display == 'block'
-      ) {
-        ele.setAttribute(
-          'style',
-          'display : none;'
-        );
+      if (ele.style.display == '' || ele.style.display == 'block') {
+        ele.setAttribute('style', 'display : none;');
       } else {
-        ele.setAttribute(
-          'style',
-          'display : block;'
-        );
+        ele.setAttribute('style', 'display : block;');
       }
     }
   } catch (error) {
@@ -498,19 +492,17 @@ function changeCollapsible2(e) {
   }
 }
 
-
-
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
-  let data, keys,products;
-  [data, keys,products] = localSetup();
+  let data, keys, products;
+  [data, keys, products] = localSetup();
   // console.table(data);
   // console.log(keys);
   // console.log(keys[0].length)
-  if(keys[0].length > 0){
-    document.getElementsByClassName('time-line')[0].style.display = "block";
-  }else{
-    document.getElementsByClassName('time-line')[0].style.display = "none";
+  if (keys[0].length > 0) {
+    document.getElementsByClassName('time-line')[0].style.display = 'block';
+  } else {
+    document.getElementsByClassName('time-line')[0].style.display = 'none';
   }
   let collapsible = document.getElementsByClassName('collapsible')[0];
   let html = '';
@@ -528,8 +520,8 @@ function displayTimeLine() {
     let year = time.getFullYear();
     let timing = time.toString().split(' ')[4];
     let day = time.toString().split(' ')[0];
-    
-      html += `
+
+    html += `
     <li class='${key}'>
          <div class="collapsible-header">
              <p class = "p-name">${name}</p>
@@ -545,8 +537,6 @@ function displayTimeLine() {
              <p>Time           :<b> ${timing}</b><p>
          </div>
     </li>`;
-    
-    
   });
 
   collapsible.innerHTML = html;
@@ -575,6 +565,7 @@ function displayTimeLine() {
           swal('Data has been deleted!', {
             icon: 'success',
           });
+          reloadChart();
         }
       });
       e.preventDefault();
@@ -584,60 +575,106 @@ function displayTimeLine() {
 displayTimeLine();
 reloadChart();
 
-
-
-
-
-
-
 function reloadChart() {
-// console.log(document.getElementsByClassName("chart-1"))
-  document.getElementsByClassName("chart-1")[0].removeChild(document.getElementById('myChart'));
-  let can = document.createElement("canvas");
-  can.setAttribute("id","myChart")
- 
-  document.getElementsByClassName("chart-1")[0].appendChild(can);
-let ctx = document.getElementById('myChart').getContext('2d');
+  document
+    .getElementsByClassName('chart-1')[0]
+    .removeChild(document.getElementById('myChart'));
+  let can = document.createElement('canvas');
+  can.setAttribute('id', 'myChart');
 
-let data, keys, products;
-[data, keys, products] = localSetup();
-let productArr = []
-let priceArr  = []
-for (const product in products) {
- productArr.push(product)
- priceArr.push(products[product])
-}
-console.log(priceArr)
-console.log(productArr)
+  document.getElementsByClassName('chart-1')[0].appendChild(can);
+  let ctx = document.getElementById('myChart').getContext('2d');
 
+  let data, keys, products;
+  [data, keys, products] = localSetup();
+  let productArr = [];
+  let priceArr = [];
+  for (const product in products) {
+    productArr.push(product);
+    priceArr.push(products[product]);
+  }
+  console.log(priceArr);
+  console.log(productArr);
 
-let chart = new Chart(ctx, {
-  // The type of chart we want to create
-  type: 'bar',
+  let chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
 
-  // The data for our dataset
-  data: {
+    // The data for our dataset
+    data: {
       labels: productArr,
-      datasets: [{
+      datasets: [
+        {
           label: 'Price',
           backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
-          data: priceArr
-      }]
-  },
+          data: priceArr,
+        },
+      ],
+    },
 
-  // Configuration options go here
-  options: {
+    // Configuration options go here
+    options: {
       scales: {
-          yAxes: [{
-              ticks: {
-                  beginAtZero: true
-              }
-          }]
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+
+  document
+    .getElementsByClassName('chart-2')[0]
+    .removeChild(document.getElementById('myChart2'));
+  let can2 = document.createElement('canvas');
+  can2.setAttribute('id', 'myChart2');
+
+  document.getElementsByClassName('chart-2')[0].appendChild(can2);
+  let ctx2 = document.getElementById('myChart2').getContext('2d');
+  let totalPrice = [];
+  productArr.forEach((p) => {
+    let sum = 0;
+    keys[0].forEach((key) => {
+      if (data[key].name == p) {
+        console.log(data[key].name);
+        sum += data[key].total;
       }
-  }
-});
+    });
+    totalPrice.push(sum)
+  });
 
-  
+  let chart2 = new Chart(ctx2, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+      labels: productArr,
+      datasets: [
+        {
+          label: 'Price',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: totalPrice,
+        },
+      ],
+    },
+
+    // Configuration options go here
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
 }
-
