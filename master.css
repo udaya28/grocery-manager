@@ -185,3 +185,17 @@ body {
   margin-bottom: 20px;
   padding: 10px;
 }
+
+  .swal-button--cancel:not([disabled]):hover ,.swal-button--cancel:not([disabled]):active,.swal-button--cancel:not([disabled]):focus {
+    background-color: #0277bd;
+  color: white;
+    }
+    .swal-button--cancel,.swal-button--cancel:active {
+      background-color: #0277bd;
+      color: white;
+  }
+
+    .swal-button--danger:focus {
+      box-shadow: 0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29);
+      background-color: #e64942;
+  }
