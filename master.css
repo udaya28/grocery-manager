@@ -142,6 +142,7 @@ body {
 .collapsible-header-2 > .row {
   margin-bottom: 0px;
   padding:1rem;
+  border-bottom: 1px solid #ddd;
 }
 .collapsible-body-2 {
   border-left: 1px solid #ddd;
@@ -154,6 +155,7 @@ body {
 }
 .collapsible-body-2 {
   display: none;
+  border-bottom: 1px solid #ddd;
   
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
