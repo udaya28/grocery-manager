@@ -142,6 +142,7 @@ body {
 .collapsible-header-2 > .row {
   margin-bottom: 0px;
   padding:1rem;
+  border-bottom: 1px solid #ddd;
 }
 .collapsible-body-2 {
   border-left: 1px solid #ddd;
@@ -154,6 +155,7 @@ body {
 }
 .collapsible-body-2 {
   display: none;
+  border-bottom: 1px solid #ddd;
   
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -183,3 +185,17 @@ body {
   margin-bottom: 20px;
   padding: 10px;
 }
+
+  .swal-button--cancel:not([disabled]):hover ,.swal-button--cancel:not([disabled]):active,.swal-button--cancel:not([disabled]):focus {
+    background-color: #0277bd;
+  color: white;
+    }
+    .swal-button--cancel,.swal-button--cancel:active {
+      background-color: #0277bd;
+      color: white;
+  }
+
+    .swal-button--danger:focus {
+      box-shadow: 0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29);
+      background-color: #e64942;
+  }
