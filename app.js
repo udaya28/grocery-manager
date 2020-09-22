@@ -492,6 +492,19 @@ function changeCollapsible2(e) {
   }
 }
 
+function checkForDate(key,index,arr){
+  let keyString = (''+key).slice(0,8);
+  let nextKeyString = (''+arr[index+1]).slice(0,8);
+  console.log(keyString,nextKeyString)
+  if(index == 0){
+    return true;
+  }
+  if(keyString !== nextKeyString){
+    return true;
+  }
+  
+}
+
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
   let data, keys, products;
@@ -506,7 +519,8 @@ function displayTimeLine() {
   }
   let collapsible = document.getElementsByClassName('collapsible')[0];
   let html = '';
-  keys[0].forEach((key) => {
+  console.log(keys[0])
+  keys[0].forEach((key,index,arr) => {
     // console.log(data[key]);
 
     let product = data[key];
@@ -520,12 +534,20 @@ function displayTimeLine() {
     let year = time.getFullYear();
     let timing = time.toString().split(' ')[4];
     let day = time.toString().split(' ')[0];
-
+    // console.log(key)
+    let dateTimeline = time.toString().split(' ').slice(0,4).join(" ");
+    if(checkForDate(key,index,arr)){
+      html +=`<li class="date">
+    <div>( ${dateTimeline} )</div>
+    </li>`
+    }
+    
     html += `
+
     <li class='${key}'>
          <div class="collapsible-header">
              <p class = "p-name">${name}</p>
-             <span class="badge"> <b> ₹ ${total}</b></span>
+             <span class="badge"> <b> ( ${count} ) &nbsp; ₹ ${total}</b></span>
              <i class="material-icons delete-icon">cancel</i>
          </div>
          <div class="collapsible-body">
@@ -538,6 +560,7 @@ function displayTimeLine() {
          </div>
     </li>`;
   });
+
 
   collapsible.innerHTML = html;
 
@@ -593,8 +616,8 @@ function reloadChart() {
     productArr.push(product);
     priceArr.push(products[product]);
   }
-  console.log(priceArr);
-  console.log(productArr);
+  // console.log(priceArr);
+  // console.log(productArr);
 
   let chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -640,7 +663,7 @@ function reloadChart() {
     let sum = 0;
     keys[0].forEach((key) => {
       if (data[key].name == p) {
-        console.log(data[key].name);
+        // console.log(data[key].name);
         sum += data[key].total;
       }
     });
