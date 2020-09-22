@@ -506,6 +506,7 @@ function displayTimeLine() {
   }
   let collapsible = document.getElementsByClassName('collapsible')[0];
   let html = '';
+  console.log(keys[0])
   keys[0].forEach((key) => {
     // console.log(data[key]);
 
@@ -520,8 +521,12 @@ function displayTimeLine() {
     let year = time.getFullYear();
     let timing = time.toString().split(' ')[4];
     let day = time.toString().split(' ')[0];
-
+    // console.log(key)
+    let dateTimeline = time.toString().split(' ').slice(0,4).join(" ");
     html += `
+    <li class="date">
+    <div>( ${dateTimeline} )</div>
+    </li>
     <li class='${key}'>
          <div class="collapsible-header">
              <p class = "p-name">${name}</p>
@@ -593,8 +598,8 @@ function reloadChart() {
     productArr.push(product);
     priceArr.push(products[product]);
   }
-  console.log(priceArr);
-  console.log(productArr);
+  // console.log(priceArr);
+  // console.log(productArr);
 
   let chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -640,7 +645,7 @@ function reloadChart() {
     let sum = 0;
     keys[0].forEach((key) => {
       if (data[key].name == p) {
-        console.log(data[key].name);
+        // console.log(data[key].name);
         sum += data[key].total;
       }
     });
