@@ -496,12 +496,11 @@ function checkForDate(key,index,arr){
   let keyString = (''+key).slice(0,8);
   let nextKeyString = (''+arr[index+1]).slice(0,8);
   console.log(keyString,nextKeyString)
-  if(index == 0){
+  
+  if(keyString !== nextKeyString ){
     return true;
   }
-  if(keyString !== nextKeyString){
-    return true;
-  }
+  return false;
   
 }
 
@@ -536,11 +535,7 @@ function displayTimeLine() {
     let day = time.toString().split(' ')[0];
     // console.log(key)
     let dateTimeline = time.toString().split(' ').slice(0,4).join(" ");
-    if(checkForDate(key,index,arr)){
-      html +=`<li class="date">
-    <div>( ${dateTimeline} )</div>
-    </li>`
-    }
+    
     
     html += `
 
@@ -559,6 +554,12 @@ function displayTimeLine() {
              <p>Time           :<b> ${timing}</b><p>
          </div>
     </li>`;
+    if(checkForDate(key,index,arr)){
+      html +=`<li class="date">
+    <div>( ${dateTimeline} )</div>
+    </li>`
+    }
+    
   });
 
 
