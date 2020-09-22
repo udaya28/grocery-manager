@@ -209,10 +209,10 @@ body {
 .date {
   padding: 8px;
   text-align: center;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 3px solid #ddd;
   border-radius: 15px;
-  font-weight: bolder;
+  font-weight:bold;
   font-size: 1rem;
   line-height: 22px;
-  color: #757575;
+  color: #5c5c5c;
 }

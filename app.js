@@ -492,6 +492,19 @@ function changeCollapsible2(e) {
   }
 }
 
+function checkForDate(key,index,arr){
+  let keyString = (''+key).slice(0,8);
+  let nextKeyString = (''+arr[index+1]).slice(0,8);
+  console.log(keyString,nextKeyString)
+  if(index == 0){
+    return true;
+  }
+  if(keyString !== nextKeyString){
+    return true;
+  }
+  
+}
+
 //gets data from local storage and create a html and add to time line every
 function displayTimeLine() {
   let data, keys, products;
@@ -507,7 +520,7 @@ function displayTimeLine() {
   let collapsible = document.getElementsByClassName('collapsible')[0];
   let html = '';
   console.log(keys[0])
-  keys[0].forEach((key) => {
+  keys[0].forEach((key,index,arr) => {
     // console.log(data[key]);
 
     let product = data[key];
@@ -523,10 +536,14 @@ function displayTimeLine() {
     let day = time.toString().split(' ')[0];
     // console.log(key)
     let dateTimeline = time.toString().split(' ').slice(0,4).join(" ");
-    html += `
-    <li class="date">
+    if(checkForDate(key,index,arr)){
+      html +=`<li class="date">
     <div>( ${dateTimeline} )</div>
-    </li>
+    </li>`
+    }
+    
+    html += `
+
     <li class='${key}'>
          <div class="collapsible-header">
              <p class = "p-name">${name}</p>
@@ -543,6 +560,7 @@ function displayTimeLine() {
          </div>
     </li>`;
   });
+
 
   collapsible.innerHTML = html;
 
